@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "73814158533",
+    "project_id": "gausampada-48ab2",
+    "storage_bucket": "gausampada-48ab2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73814158533:android:4bf2e45054b1c250a414ac",
+        "android_client_info": {
+          "package_name": "com.example.gausampada"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73814158533-24fkj6vmv4hooej0rg2pu57mtpg15guh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gausampada",
+            "certificate_hash": "556c801c98e3bb4a65ab207acc1d1dc3b4d48103"
+          }
+        },
+        {
+          "client_id": "73814158533-liufe88rsic0rqv78e8d9up74qpfol0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_6990eEI2EUzKYAwSkxRbLPx1XiLdJBQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73814158533-liufe88rsic0rqv78e8d9up74qpfol0l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "73814158533-urioh37ihvq5o5hlj0tg483sv5f0p33d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gausampada"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

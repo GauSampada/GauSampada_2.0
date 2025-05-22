@@ -1,0 +1,364 @@
+{
+  "@@locale": "hi",
+  "title": "गौसम्पदा",
+  "@title": {
+    "description": "ऐप का शीर्षक"
+  },
+
+  "userName": "{name}",
+  "@userName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+
+  "onboard": "शुरू करें!",
+
+  "onboardingScreen1Title": "गौसम्पदा में आपका स्वागत है!",
+  "@onboardingScreen1Title": {
+    "description": "पहली ऑनबोर्डिंग स्क्रीन का शीर्षक"
+  },
+  "onboardingScreen2Title": "एआई-समर्थित रोग पहचान और रोकथाम",
+  "@onboardingScreen2Title": {
+    "description": "दूसरी ऑनबोर्डिंग स्क्रीन का शीर्षक"
+  },
+  "onboardingScreen3Title": "डेयरी उत्पादों को आसानी से बेचें",
+  "@onboardingScreen3Title": {
+    "description": "तीसरी ऑनबोर्डिंग स्क्रीन का शीर्षक"
+  },
+  "onboardingScreen4Title": "आसपास के किसान और खरीदार खोजें",
+  "@onboardingScreen4Title": {
+    "description": "चौथी ऑनबोर्डिंग स्क्रीन का शीर्षक"
+  },
+  "onboardingScreen5Title": "पशु चिकित्सक से अपॉइंटमेंट लें",
+  "@onboardingScreen5Title": {
+    "description": "पांचवीं ऑनबोर्डिंग स्क्रीन का शीर्षक"
+  },
+
+  "feedScreen4Title": "गाय के स्वास्थ्य के लिए एआई सहायता",
+  "@feedScreen4Title": {
+    "description": "एआई सहायता सुविधा का शीर्षक"
+  },
+
+  "learnMore": "और जानें",
+  "@learnMore": {
+    "description": "और जानकारी के लिए बटन टेक्स्ट"
+  },
+
+  "onboardingScreen1Desc": "किसानों और खरीदारों से जुड़ें और उचित मूल्य प्राप्त करें।",
+  "@onboardingScreen1Desc": {
+    "description": "पहली ऑनबोर्डिंग स्क्रीन का विवरण"
+  },
+  "onboardingScreen2Desc": "एआई जल्दी रोगों का पता लगाता है, स्वास्थ्य की निगरानी करता है और पोषण को अनुकूलित करता है।",
+  "@onboardingScreen2Desc": {
+    "description": "दूसरी ऑनबोर्डिंग स्क्रीन का विवरण"
+  },
+  "onboardingScreen3Desc": "सफल बिक्री के लिए सही मूल्य निर्धारण, इन्वेंटरी और विपणन आवश्यक हैं।",
+  "@onboardingScreen3Desc": {
+    "description": "तीसरी ऑनबोर्डिंग स्क्रीन का विवरण"
+  },
+  "onboardingScreen4Desc": "स्मार्ट मूल्य निर्धारण और गुणवत्ता बनाए रखें।",
+  "@onboardingScreen4Desc": {
+    "description": "चौथी ऑनबोर्डिंग स्क्रीन का विवरण"
+  },
+  "onboardingScreen5Desc": "पशु चिकित्सक स्वास्थ्य डेटा का विश्लेषण करते हैं और सही उपचार प्रदान करते हैं।",
+  "@onboardingScreen5Desc": {
+    "description": "पांचवीं ऑनबोर्डिंग स्क्रीन का विवरण"
+  },
+
+  "nextBtn": "आगे",
+  "@nextBtn": {
+    "description": "आगे जाने के लिए बटन"
+  },
+  "skipBtn": "छोड़ें",
+  "@skipBtn": {
+    "description": "स्किप करने के लिए बटन"
+  },
+  "getStartedBtn": "शुरू करें",
+  "@getStartedBtn": {
+    "description": "शुरू करने के लिए बटन"
+  },
+
+  "signupScreenTitle": "शुरू करें!",
+  "@signupScreenTitle": {
+    "description": "साइनअप स्क्रीन का शीर्षक"
+  },
+  "signupScreenSubtitle": "अपना खाता बनाएं और यात्रा शुरू करें",
+  "@signupScreenSubtitle": {
+    "description": "साइनअप स्क्रीन का उपशीर्षक"
+  },
+
+  "signupNameLabel": "नाम",
+  "signupNameHint": "अपना नाम दर्ज करें",
+  "signupEmailLabel": "ईमेल",
+  "signupEmailHint": "अपना ईमेल दर्ज करें",
+  "signupPasswordLabel": "पासवर्ड",
+  "signupPasswordHint": "अपना पासवर्ड दर्ज करें",
+  "signupPhoneLabel": "मोबाइल नंबर",
+  "signupPhoneHint": "अपना मोबाइल नंबर दर्ज करें",
+
+  "signupButton": "साइन अप करें",
+  "signupGoogleButton": "गूगल के साथ साइन अप करें",
+  "signupAlreadyHaveAccount": "पहले से ही खाता है?",
+  "signupFillAllFields": "सभी फ़ील्ड भरें!",
+
+  "welcomeBack": "फिर से स्वागत है!",
+  "@welcomeBack": {
+    "description": "वेलकम बैक टेक्स्ट"
+  },
+  "accessYourAccount": "अपने खाते तक पहुंचें और जारी रखें",
+  "@accessYourAccount": {
+    "description": "लॉगिन स्क्रीन के लिए उपशीर्षक"
+  },
+
+  "login": "लॉग इन करें",
+  "or": "या",
+  "forgotPassword": "पासवर्ड भूल गए",
+  "loginWithGoogle": "गूगल के साथ लॉग इन करें",
+  "dontHaveAccount": "कोई खाता नहीं है?",
+
+  "cowHealthMonitoring": "गाय के स्वास्थ्य की वास्तविक समय में निगरानी करें",
+  "milkProductionTracking": "दूध उत्पादन और उपज को ट्रैक करें",
+  "communityForFarmers": "किसानों के समुदाय से जुड़ें",
+  "smartNutritionSuggestions": "एआई-संचालित पोषण सुझाव प्राप्त करें",
+  "automatedBreedingGuidance": "स्वचालित प्रजनन मार्गदर्शन प्राप्त करें",
+
+  "gauSampada": "गौसम्पदा",
+  "location": "स्थान",
+  "notifications": "सूचनाएँ",
+  "breedInformation": "नस्ल की जानकारी",
+  "dairyProducts": "डेयरी उत्पाद",
+  "myOrders": "मेरे ऑर्डर",
+  "home": "होम",
+  "market": "बाजार",
+
+   "aiDiagnosis": "एआई निदान",
+  "@aiDiagnosis": {
+    "description": "एआई निदान के लिए पाठ"
+  },
+  "breedInfo": "नस्ल जानकारी",
+  "@breedInfo": {
+    "description": "नस्ल जानकारी के लिए पाठ"
+  },
+  "profile": "प्रोफ़ाइल",
+  "@profile": {
+    "description": "प्रोफ़ाइल के लिए पाठ"
+  },
+  "settings": "सेटिंग्स",
+  "@settings": {
+    "description": "सेटिंग्स के लिए पाठ"
+  },
+  "signOut": "साइन आउट",
+  "@signOut": {
+    "description": "साइन आउट के लिए बटन पाठ"
+  },
+  "logOut": "लॉग आउट",
+  "@logOut": {
+    "description": "लॉग आउट के लिए बटन पाठ"
+  },
+  "confirmLogout": "क्या आप वाकई लॉग आउट करना चाहते हैं?",
+  "@confirmLogout": {
+    "description": "लॉग आउट पुष्टि पाठ"
+  },
+  "cancel": "रद्द करें",
+  "@cancel": {
+    "description": "रद्द करने के लिए बटन पाठ"
+  },
+  "yes": "हाँ",
+  "@yes": {
+    "description": "हाँ के लिए बटन पाठ"
+  },
+  "pleaseFillAllFields": "कृपया सभी फ़ील्ड भरें",
+  "@pleaseFillAllFields": {
+    "description": "खाली फ़ील्ड के लिए त्रुटि संदेश"
+  },
+  "invalidEmailOrPassword": "अमान्य ईमेल या पासवर्ड",
+  "@invalidEmailOrPassword": {
+    "description": "गलत क्रेडेंशियल्स के लिए त्रुटि संदेश"
+  },
+  "receiveEmailToResetPassword": "पासवर्ड रीसेट करने के लिए एक ईमेल प्राप्त करें",
+  "@receiveEmailToResetPassword": {
+    "description": "पासवर्ड रीसेट अनुरोध संदेश"
+  },
+  "resetPassword": "पासवर्ड रीसेट करें",
+  "@resetPassword": {
+    "description": "पासवर्ड रीसेट करने के लिए बटन पाठ"
+  },
+  "success": "सफलता",
+  "@success": {
+    "description": "सफलता संदेश"
+  },
+  "weakPassword": "प्रदान किया गया पासवर्ड बहुत कमजोर है।",
+  "@weakPassword": {
+    "description": "कमजोर पासवर्ड के लिए त्रुटि संदेश"
+  },
+  "accountExists": "इस ईमेल के लिए खाता पहले से मौजूद है।",
+  "@accountExists": {
+    "description": "मौजूदा खाता होने की त्रुटि संदेश"
+  },
+  "emailBadlyFormatted": "ईमेल गलत प्रारूप में है।",
+  "@emailBadlyFormatted": {
+    "description": "अमान्य ईमेल प्रारूप के लिए त्रुटि संदेश"
+  },
+  "errorCreatingUser": "उपयोगकर्ता बनाने में त्रुटि: ",
+  "@errorCreatingUser": {
+    "description": "उपयोगकर्ता निर्माण त्रुटि का उपसर्ग"
+  },
+  "noUserFound": "इस ईमेल के लिए कोई उपयोगकर्ता नहीं मिला।",
+  "@noUserFound": {
+    "description": "मौजूदा नहीं होने वाले उपयोगकर्ता के लिए त्रुटि संदेश"
+  },
+  "incorrectPassword": "गलत पासवर्ड।",
+  "@incorrectPassword": {
+    "description": "गलत पासवर्ड के लिए त्रुटि संदेश"
+  },
+  "errorSigningIn": "साइन इन करने में त्रुटि: ",
+  "@errorSigningIn": {
+    "description": "साइन इन त्रुटि का उपसर्ग"
+  },
+  "googleSignInAborted": "Google साइन-इन रद्द कर दिया गया।",
+  "@googleSignInAborted": {
+    "description": "Google साइन-इन रद्द होने का संदेश"
+  },
+  "unknown": "अज्ञात",
+  "@unknown": {
+    "description": "अज्ञात मामलों के लिए बैकअप पाठ"
+  },
+  "noEmail": "कोई ईमेल नहीं",
+  "@noEmail": {
+    "description": "ईमेल न मिलने पर बैकअप पाठ"
+  },
+  "errorSigningInGoogle": "Google के साथ साइन इन करने में त्रुटि: ",
+  "@errorSigningInGoogle": {
+    "description": "Google साइन-इन त्रुटि का उपसर्ग"
+  },
+  "passwordResetEmailSent": "पासवर्ड रीसेट ईमेल भेजा गया: ",
+  "@passwordResetEmailSent": {
+    "description": "सफल पासवर्ड रीसेट ईमेल संदेश"
+  },
+  "documentSnapshotNull": "दस्तावेज़ स्नैपशॉट डेटा शून्य है",
+  "@documentSnapshotNull": {
+    "description": "रिक्त दस्तावेज़ स्नैपशॉट के लिए त्रुटि संदेश"
+  },
+  "pleaseEnterPrompt": "कृपया एक प्रॉम्प्ट दर्ज करें",
+  "@pleaseEnterPrompt": {
+    "description": "उपयोगकर्ता इनपुट अनुरोध संदेश"
+  },
+  "error": "त्रुटि",
+  "@error": {
+    "description": "सामान्य त्रुटि संदेश"
+  },
+  "errorProcessingImage": "त्रुटि: छवि को संसाधित करने में असमर्थ। स्थिति कोड",
+  "@errorProcessingImage": {
+    "description": "छवि प्रसंस्करण विफलताओं के लिए त्रुटि संदेश"
+  },
+
+  "errorPickingImage": "छवि चुनने में त्रुटि",
+  "@errorPickingImage": {
+    "description": "छवि चयन विफलता के लिए त्रुटि संदेश"
+  },
+
+  "forgotPassword": "पासवर्ड भूल गए?",
+  "@forgotPassword": {
+    "description": "पासवर्ड भूल गए बटन का पाठ"
+  },
+
+  "gir_breedName": "गिर",
+  "gir_origin": "गुजरात, भारत",
+  "gir_localNames": "गिर",
+  "gir_milkYield": "10-15 लीटर/दिन",
+  "gir_lactationPeriod": "270-300 दिन",
+  "gir_description": "गिर गायें गर्म जलवायु के लिए अच्छी तरह से अनुकूलित होती हैं और इनकी प्रतिरक्षा प्रणाली मजबूत होती है, जिससे वे बीमारियों के प्रति अत्यधिक प्रतिरोधी होती हैं। इनका कोट लाल-भूरा होता है और उनके सींग घुमावदार होते हैं। यह उच्च दूध उत्पादन के लिए जानी जाती हैं और इनका दूध A2 प्रोटीन से भरपूर होता है। इनके रखरखाव में भी कम खर्च आता है क्योंकि इन्हें न्यूनतम पशु चिकित्सा देखभाल की आवश्यकता होती है।",
+
+  "sahiwal_breedName": "साहीवाल",
+  "sahiwal_origin": "पंजाब, हरियाणा, उत्तर प्रदेश",
+  "sahiwal_localNames": "",
+  "sahiwal_milkYield": "15-20 लीटर/दिन",
+  "sahiwal_lactationPeriod": "280-320 दिन",
+  "sahiwal_description": "साहीवाल भारत की सर्वश्रेष्ठ देशी दुग्ध उत्पादक नस्लों में से एक है। इनका कोट लाल-भूरा होता है और शरीर की त्वचा ढीली होती है। ये खुले चरागाह और स्थिर आहार दोनों के लिए अनुकूल होती हैं। इनके दूध में वसा की मात्रा अधिक होती है, जो डेयरी उत्पादों के लिए उपयुक्त होती है।",
+
+  "red_sindhi_breedName": "रेड सिंधी",
+  "red_sindhi_origin": "सिंध (पाकिस्तान), अब भारत में",
+  "red_sindhi_localNames": "सिंधी, रेड कराची",
+  "red_sindhi_milkYield": "12-15 लीटर/दिन",
+  "red_sindhi_lactationPeriod": "270-300 दिन",
+  "red_sindhi_description": "रेड सिंधी गायों का रंग गहरा लाल होता है और वे उष्णकटिबंधीय जलवायु के लिए अत्यधिक अनुकूल होती हैं। ये उच्च रोग प्रतिरोधी होती हैं और अक्सर अन्य नस्लों की उत्पादकता बढ़ाने के लिए क्रॉसब्रीडिंग में प्रयोग की जाती हैं।",
+
+  "tharparkar_breedName": "थारपारकर",
+  "tharparkar_origin": "राजस्थान",
+  "tharparkar_localNames": "थारी",
+  "tharparkar_milkYield": "8-12 लीटर/दिन",
+  "tharparkar_lactationPeriod": "260-290 दिन",
+  "tharparkar_description": "थारपारकर गायें दूध उत्पादन और कृषि कार्य दोनों के लिए प्रसिद्ध हैं। इनका रंग सफेद या ग्रे होता है और ये सूखा सहन करने में सक्षम होती हैं। इनके दूध में वसा की अच्छी मात्रा होती है, जिससे यह डेयरी फार्मों के लिए मूल्यवान बनती है।",
+
+  "deoni_breedName": "देओनी",
+  "deoni_origin": "महाराष्ट्र, तेलंगाना, कर्नाटक",
+  "deoni_localNames": "डोंगेरपाटी, वन्नेरा",
+  "deoni_milkYield": "5-10 लीटर/दिन",
+  "deoni_lactationPeriod": "250-280 दिन",
+  "deoni_description": "देओनी गायें मध्यम आकार की होती हैं और इनका रंग काला-सफेद होता है। यह दूध उत्पादन और कृषि कार्य दोनों में अच्छी तरह से उपयोगी होती हैं। ये रोग प्रतिरोधी होती हैं और शुष्क व आर्द्र जलवायु में भी अनुकूलित हो सकती हैं।",
+
+  "ongole_breedName": "ओंगोल",
+  "ongole_origin": "आंध्र प्रदेश",
+  "ongole_localNames": "नेल्लोर",
+  "ongole_milkYield": "5-8 लीटर/दिन",
+  "ongole_lactationPeriod": "220-250 दिन",
+  "ongole_description": "ओंगोल गायें आकार में बड़ी और मजबूत होती हैं। इन्हें मुख्य रूप से कृषि कार्य और भार खींचने के लिए पाला जाता है। ये कठोर जलवायु में जीवित रहने की क्षमता रखती हैं।",
+
+  "indian_cow_breeds_title": "भारतीय गाय की नस्लें",
+
+  "breed": "नस्ल",
+  "origin": "उत्पत्ति",
+  "cost_approx": "अनुमानित लागत",
+  "booking": "बुकिंग",
+  "book_now": "अभी बुक करें",
+  "milk_yield": "दूध उत्पादन",
+  "lactation_period": "दूध उत्पादन अवधि",
+  "cost": "लागत",
+  "local_names": "स्थानीय नाम",
+  "description": "विवरण",
+  "interested_in": "इच्छुक हैं",
+  "contact_seller": "विक्रेता से संपर्क करें",
+
+  "removed_from_favorites": "पसंदीदा से हटाया गया",
+  "added_to_favorites": "पसंदीदा में जोड़ा गया",
+
+  "select_language": "भाषा चुनें",
+  "apply_language": "भाषा लागू करें",
+
+   "editProfile": "प्रोफ़ाइल संपादित करें",
+  "changePassword": "पासवर्ड बदलें",
+  "settings": "सेटिंग्स",
+  "changeLanguage": "भाषा बदलें",
+  "help": "सहायता",
+  "logoutConfirmation": "क्या आप वाकई लॉग आउट करना चाहते हैं?",
+  "diseasePrediction": "रोग भविष्यवाणी",
+  "noImageSelected": "कोई छवि चयनित नहीं",
+  "gallery": "गैलरी",
+  "camera": "कैमरा",
+  "enterYourDetails": "अपने विवरण दर्ज करें",
+  "analyzeImage": "छवि का विश्लेषण करें",
+  "aiAssistant": "एआई सहायक",
+  "errorEncountered": "क्षमा करें, मुझे एक त्रुटि का सामना करना पड़ा",
+  "failedToGetResponse": "जवाब प्राप्त करने में विफल",
+  "askQuestion": "कोई प्रश्न पूछें या बस नमस्ते कहें",
+  "assistantGreeting": "मैं आपकी सहायता के लिए यहाँ हूँ!",
+  "cowBreedsInfo": "गायों और उनकी नस्लों के बारे में पूछने के लिए स्वतंत्र महसूस करें।",
+  "askYourQuestions": "अपने प्रश्न यहाँ पूछें",
+  "failedToMakeCall": "कॉल करने में विफल। कृपया पुनः प्रयास करें।",
+  "permissionDenied": "अनुमति अस्वीकृत। कॉल नहीं कर सकते।",
+  "permissionPermanentlyDenied": "अनुमति स्थायी रूप से अस्वीकृत। सेटिंग्स में सक्षम करें।",
+  "describeSymptoms": "लक्षणों का वर्णन करें या कोई विशिष्ट प्रश्न पूछें",
+  "analyzing": "विश्लेषण हो रहा है...",
+  "analysisReport": "विश्लेषण रिपोर्ट",
+  "yourQuestion": "आपका प्रश्न:",
+  "results": "परिणाम:",
+  "recommendedDoctor": "सिफारिश किया गया डॉक्टर",
+  "viewAll": "सभी देखें",
+  "india": "भारत"
+}
+
+  
+

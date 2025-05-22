@@ -1,0 +1,564 @@
+{
+  "@@locale": "en",
+  "title": "GauSampada",
+  "@title": {
+    "description": "App title"
+  },
+
+   "userName": "{name}",
+  "@userName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+
+  "onboard": "Onboard!",
+
+  "onboardingScreen1Title": "Welcome to GauSampada!",
+  "@onboardingScreen1Title": {
+    "description": "Title for the first onboarding screen"
+  },
+  "onboardingScreen2Title": "AI-Powered Disease Detection & Prevention",
+  "@onboardingScreen2Title": {
+    "description": "Title for the second onboarding screen"
+  },
+  "onboardingScreen3Title": "Sell Dairy Products Effortlessly",
+  "@onboardingScreen3Title": {
+    "description": "Title for the third onboarding screen"
+  },
+  "onboardingScreen4Title": "Find Nearby Farmers & Buyers",
+  "@onboardingScreen4Title": {
+    "description": "Title for the fourth onboarding screen"
+  },
+  "onboardingScreen5Title": "Veterinary Doctor Appointments",
+  "@onboardingScreen5Title": {
+    "description": "Title for the fifth onboarding screen"
+  },
+  "feedScreen4Title": "AI Assistance for Cow Health",
+  "@feedScreen4Title": {
+    "description": "Title for AI assistance feature"
+  },
+  "learnMore": "Learn More",
+  "@learnMore": {
+    "description": "Button text to learn more"
+  },
+
+  "onboardingScreen1Desc": "Connect with farmers and buyers through markets, cooperatives, and online platforms for fair pricing.",
+  "@onboardingScreen1Desc": {
+    "description": "Description for the first onboarding screen"
+  },
+  "onboardingScreen2Desc": "AI detects diseases early, monitors vitals, optimizes nutrition, and sends alerts for better cattle health.",
+  "@onboardingScreen2Desc": {
+    "description": "Description for the second onboarding screen"
+  },
+  "onboardingScreen3Desc": "Successful sales need smart pricing, inventory, and engagement, plus quality supply and marketing.",
+  "@onboardingScreen3Desc": {
+    "description": "Description for the third onboarding screen"
+  },
+  "onboardingScreen4Desc": "Smart pricing, inventory, and engagement boost sales and quality.",
+  "@onboardingScreen4Desc": {
+    "description": "Description for the fourth onboarding screen"
+  },
+  "onboardingScreen5Desc": "Veterinarians analyze cow health data for accurate diagnosis, timely treatment, and scheduling.",
+  "@onboardingScreen5Desc": {
+    "description": "Description for the fifth onboarding screen"
+  },
+
+  "nextBtn": "Next",
+  "@nextBtn": {
+    "description": "Button text for next"
+  },
+  "skipBtn": "Skip",
+  "@skipBtn": {
+    "description": "Button text for skip"
+  },
+  "getStartedBtn": "Get Started",
+  "@getStartedBtn": {
+    "description": "Button text for get started"
+  },
+
+  "signupScreenTitle": "Onboard!",
+  "@signupScreenTitle": {
+    "description": "Title for signup screen"
+  },
+  "signupScreenSubtitle": "Create an account to start your journey",
+  "@signupScreenSubtitle": {
+    "description": "Subtitle for signup screen"
+  },
+  "signupNameLabel": "Name",
+  "@signupNameLabel": {
+    "description": "Label for name field in signup form"
+  },
+  "signupNameHint": "Enter Your Name",
+  "@signupNameHint": {
+    "description": "Hint for name field in signup form"
+  },
+  "signupEmailLabel": "Email",
+  "@signupEmailLabel": {
+    "description": "Label for email field in signup form"
+  },
+  "signupEmailHint": "Enter Your Email",
+  "@signupEmailHint": {
+    "description": "Hint for email field in signup form"
+  },
+  "signupPasswordLabel": "Password",
+  "@signupPasswordLabel": {
+    "description": "Label for password field in signup form"
+  },
+  "signupPasswordHint": "Enter Your Password",
+  "@signupPasswordHint": {
+    "description": "Hint for password field in signup form"
+  },
+  "signupPhoneLabel": "Phone Number",
+  "@signupPhoneLabel": {
+    "description": "Label for phone number field in signup form"
+  },
+  "signupPhoneHint": "Enter Your Mobile Number",
+  "@signupPhoneHint": {
+    "description": "Hint for phone number field in signup form"
+  },
+  "signupButton": "Sign Up",
+  "@signupButton": {
+    "description": "Button text for sign up"
+  },
+  "signupGoogleButton": "Sign Up With Google",
+  "@signupGoogleButton": {
+    "description": "Button text for sign up with Google"
+  },
+  "signupAlreadyHaveAccount": "Already Have an Account?",
+  "@signupAlreadyHaveAccount": {
+    "description": "Text for already have account"
+  },
+  "signupFillAllFields": "Fill All Fields!",
+  "@signupFillAllFields": {
+    "description": "Error message for empty fields"
+  },
+  "signupNameRequired": "Name is required",
+  "@signupNameRequired": {
+    "description": "Error message for required name"
+  },
+  "signupEmailRequired": "Email is required",
+  "@signupEmailRequired": {
+    "description": "Error message for required email"
+  },
+  "signupEmailInvalid": "Enter a valid email",
+  "@signupEmailInvalid": {
+    "description": "Error message for invalid email"
+  },
+  "signupPasswordRequired": "Password is required",
+  "@signupPasswordRequired": {
+    "description": "Error message for required password"
+  },
+  "signupPhoneRequired": "Please enter a valid phone number",
+  "@signupPhoneRequired": {
+    "description": "Error message for required phone number"
+  },
+
+  "welcomeBack": "Welcome back!",
+  "@welcomeBack": {
+    "description": "Welcome back text"
+  },
+  "accessYourAccount": "Access your account to continue your journey",
+  "@accessYourAccount": {
+    "description": "Subtitle for login screen"
+  },
+  "loginWithGoogle": "Login With Google",
+  "@loginWithGoogle": {
+    "description": "Button text for login with Google"
+  },
+  "dontHaveAccount": "Don't have an Account?",
+  "@dontHaveAccount": {
+    "description": "Text for don't have account"
+  },
+  "login": "Log In",
+  "@login": {
+    "description": "Button text for login"
+  },
+  "or": "Or",
+  "@or": {
+    "description": "Text for or"
+  },
+  "forgotPassword": "Forgot Password",
+  "@forgotPassword": {
+    "description": "Button text for forgot password"
+  },
+
+  "cowHealthMonitoring": "Monitor cow health in real-time",
+  "@cowHealthMonitoring": {
+    "description": "Feature for cow health monitoring"
+  },
+  "milkProductionTracking": "Track milk production & yield",
+  "@milkProductionTracking": {
+    "description": "Feature for milk production tracking"
+  },
+  "communityForFarmers": "Join the farmers' community",
+  "@communityForFarmers": {
+    "description": "Feature for farmers community"
+  },
+  "smartNutritionSuggestions": "Get AI-powered nutrition suggestions",
+  "@smartNutritionSuggestions": {
+    "description": "Feature for nutrition suggestions"
+  },
+  "automatedBreedingGuidance": "Receive automated breeding guidance",
+  "@automatedBreedingGuidance": {
+    "description": "Feature for breeding guidance"
+  },
+
+  "gauSampada": "GauSampada",
+  "@gauSampada": {
+    "description": "App name"
+  },
+  "location": "Location",
+  "@location": {
+    "description": "Text for location"
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Text for notifications"
+  },
+  "breedInformation": "Breed Information",
+  "@breedInformation": {
+    "description": "Text for breed information"
+  },
+  "dairyProducts": "Dairy Products",
+  "@dairyProducts": {
+    "description": "Text for dairy products"
+  },
+  "myOrders": "My Orders",
+  "@myOrders": {
+    "description": "Text for my orders"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Text for home"
+  },
+  "market": "Market",
+  "@market": {
+    "description": "Text for market"
+  },
+  "aiDiagnosis": "AI Diagnosis",
+  "@aiDiagnosis": {
+    "description": "Text for AI diagnosis"
+  },
+  "breedInfo": "Breed Info",
+  "@breedInfo": {
+    "description": "Text for breed info"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "Text for profile"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Text for settings"
+  },
+  "signOut": "Sign Out",
+  "@signOut": {
+    "description": "Button text for sign out"
+  },
+  "logOut": "Log Out",
+  "@logOut": {
+    "description": "Button text for log out"
+  },
+  "confirmLogout": "Are you sure you want to Log Out?",
+  "@confirmLogout": {
+    "description": "Confirmation text for logout"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Button text for cancel"
+  },
+  "yes": "Yes",
+  "@yes": {
+    "description": "Button text for yes"
+  },
+
+  "pleaseFillAllFields": "Please Fill All Fields",
+  "@pleaseFillAllFields": {
+    "description": "Error message for empty fields"
+  },
+
+  "invalidEmailOrPassword": "Invalid Email Or Password",
+  "@invalidEmailOrPassword": {
+    "description": "Error message for incorrect credentials"
+  },
+
+  "receiveEmailToResetPassword": "Receive an Email to Reset Your Password",
+  "@receiveEmailToResetPassword": {
+    "description": "Message for password reset request"
+  },
+
+  "resetPassword": "Reset Password",
+  "@resetPassword": {
+    "description": "Button text for resetting password"
+  },
+
+  "success": "success",
+  "@success": {
+    "description": "Success message"
+  },
+
+  "weakPassword": "The password provided is too weak.",
+  "@weakPassword": {
+    "description": "Error message for weak password"
+  },
+
+  "accountExists": "The account already exists for that email.",
+  "@accountExists": {
+    "description": "Error message for existing account"
+  },
+
+  "emailBadlyFormatted": "Email is badly formatted.",
+  "@emailBadlyFormatted": {
+    "description": "Error message for invalid email format"
+  },
+
+  "errorCreatingUser": "Error creating user: ",
+  "@errorCreatingUser": {
+    "description": "Prefix for user creation errors"
+  },
+
+  "noUserFound": "No user found for that email.",
+  "@noUserFound": {
+    "description": "Error message for non-existent user"
+  },
+
+  "incorrectPassword": "Incorrect password.",
+  "@incorrectPassword": {
+    "description": "Error message for wrong password"
+  },
+
+  "errorSigningIn": "Error signing in: ",
+  "@errorSigningIn": {
+    "description": "Prefix for sign-in errors"
+  },
+
+  "googleSignInAborted": "Google sign-in aborted.",
+  "@googleSignInAborted": {
+    "description": "Message when Google sign-in is canceled"
+  },
+
+  "unknown": "Unknown",
+  "@unknown": {
+    "description": "Fallback text for unknown cases"
+  },
+
+  "noEmail": "No email",
+  "@noEmail": {
+    "description": "Fallback text for missing email"
+  },
+
+  "errorSigningInGoogle": "Error signing in with Google: ",
+  "@errorSigningInGoogle": {
+    "description": "Prefix for Google sign-in errors"
+  },
+
+  "passwordResetEmailSent": "Password Reset Email Sent to ",
+  "@passwordResetEmailSent": {
+    "description": "Message for successful password reset email"
+  },
+
+  "documentSnapshotNull": "Document snapshot data is null",
+  "@documentSnapshotNull": {
+    "description": "Error message when document snapshot is empty"
+  },
+
+  "pleaseEnterPrompt": "Please enter a prompt",
+  "@pleaseEnterPrompt": {
+    "description": "Message requesting user input"
+  },
+
+  "error": "Error",
+  "@error": {
+    "description": "General error message"
+  },
+
+  "errorProcessingImage": "Error: Unable to process image. Status code",
+  "@errorProcessingImage": {
+    "description": "Error message for image processing failures"
+  },
+
+  "errorPickingImage": "Error picking image",
+  "@errorPickingImage": {
+    "description": "Error message for image selection failure"
+  },
+
+  "forgotPassword": "Forgot Password",
+  "@forgotPassword": {
+    "description": "Button text for forgot password"
+  },
+
+  "gir_breedName": "Gir",
+  "gir_origin": "Gujarat, India",
+  "gir_localNames": "Gyr",
+  "gir_milkYield": "10-15 liters/day",
+  "gir_lactationPeriod": "270-300 days",
+  "gir_description": "Gir cows are well-adapted to hot climates and have a strong immune system, making them highly disease-resistant. They have a distinctive reddish-brown coat and curved horns. Known for their high milk yield, they produce milk rich in A2 protein, making it highly nutritious. These cows are also easy to maintain as they require minimal veterinary care. Due to their adaptability, they are exported worldwide for dairy breeding programs.",
+
+  "sahiwal_breedName": "Sahiwal",
+  "sahiwal_origin": "Punjab, Haryana, Uttar Pradesh",
+  "sahiwal_localNames": "",
+  "sahiwal_milkYield": "15-20 liters/day",
+  "sahiwal_lactationPeriod": "280-320 days",
+  "sahiwal_description": "Sahiwal is one of the best indigenous dairy breeds, known for its high milk production and resistance to tropical diseases. These cows have a reddish-brown coat, a loose skin structure, and short horns. They can adapt to both stall feeding and grazing conditions, making them highly versatile. Their milk contains a high percentage of fat, making it suitable for dairy-based products. Sahiwal cattle are also used in crossbreeding programs to improve the milk yield of other breeds.",
+
+  "red_sindhi_breedName": "Red Sindhi",
+  "red_sindhi_origin": "Sindh (Pakistan), now found in India",
+  "red_sindhi_localNames": "Sindhi, Red Karachi",
+  "red_sindhi_milkYield": "12-15 liters/day",
+  "red_sindhi_lactationPeriod": "270-300 days",
+  "red_sindhi_description": "Red Sindhi cows have a deep red coat, high disease resistance, and adapt well to hot, humid climates. They are widely used in crossbreeding to improve productivity. Their milk has a good fat percentage, making it ideal for ghee and butter production.",
+
+  "tharparkar_breedName": "Tharparkar",
+  "tharparkar_origin": "Rajasthan",
+  "tharparkar_localNames": "Thari",
+  "tharparkar_milkYield": "8-12 liters/day",
+  "tharparkar_lactationPeriod": "260-290 days",
+  "tharparkar_description": "Tharparkar is a dual-purpose breed known for both milk production and draught work. It has a white or grey coat, making it distinct from other indigenous breeds. This breed is highly resistant to drought conditions and can thrive on minimal fodder. The milk is rich in nutrients and has a good fat percentage, making it valuable for dairy farms. Due to their sturdy build, they are often used in farming activities in desert regions.",
+
+  "deoni_breedName": "Deoni",
+  "deoni_origin": "Maharashtra, Telangana, Karnataka",
+  "deoni_localNames": "Dongerpati, Wannera",
+  "deoni_milkYield": "5-10 liters/day",
+  "deoni_lactationPeriod": "250-280 days",
+  "deoni_description": "Deoni cattle are medium-sized, with a black-and-white coat and a strong muscular build. They are excellent milk producers and also perform well in draught work. These cows are known for their disease resistance and adaptability to both dry and wet climates. Their milk is high in fat content, making it useful for various dairy products. Due to their dual-purpose nature, they are widely reared by farmers across different regions.",
+
+  "ongole_breedName": "Ongole",
+  "ongole_origin": "Andhra Pradesh",
+  "ongole_localNames": "Nellore",
+  "ongole_milkYield": "5-8 liters/day",
+  "ongole_lactationPeriod": "220-250 days",
+  "ongole_description": "Ongole cattle are large, muscular, and mainly used for draught work, though they also provide a decent amount of milk. They have a white coat, a strong body, and a calm temperament. This breed is well-known for its endurance and ability to thrive in harsh climatic conditions. Ongole bulls are widely used for plowing and transport due to their strength. They have a long lifespan and require minimal maintenance, making them cost-effective.",
+
+  "hariana_breedName": "Hariana",
+  "hariana_origin": "Haryana",
+  "hariana_localNames": "",
+  "hariana_milkYield": "8-10 liters/day",
+  "hariana_lactationPeriod": "250-280 days",
+  "hariana_description": "Hariana cattle are known for their ability to perform both as dairy and draught animals. They have a white or grey coat and a well-proportioned body structure. These cows are highly resistant to diseases and can survive on low-quality fodder. They produce milk with a moderate fat percentage, suitable for domestic dairy production. Due to their strong build, they are often used for plowing and transportation in rural areas.",
+
+  "kankrej_breedName": "Kankrej",
+  "kankrej_origin": "Gujarat, Rajasthan",
+  "kankrej_localNames": "Wadhiar",
+  "kankrej_milkYield": "8-12 liters/day",
+  "kankrej_lactationPeriod": "250-300 days",
+  "kankrej_description": "Kankrej cattle are known for their speed and endurance, making them ideal for heavy farm work. They have a sleek body, long horns, and a white coat. These animals are extensively used for plowing and cart pulling due to their strong build. Though they produce a small quantity of milk, they are mainly reared for their strength. They have high disease resistance and can survive in extreme climatic conditions.",
+
+  "khillari_breedName": "Khillari",
+  "khillari_origin": "Maharashtra, Karnataka",
+  "khillari_localNames": "",
+  "khillari_milkYield": "2-5 liters/day",
+  "khillari_lactationPeriod": "200-250 days",
+  "khillari_description": "The Khillari breed is known for its agility, speed, and strength, making it ideal for farm work and transportation. These cattle are small to medium-sized with a compact, muscular build and a short, fine coat, often seen in shades of grey, white, or reddish-brown. Their horns curve backward in a distinctive manner. They are widely used in hilly and semi-arid regions for tilling fields and pulling heavy loads.",
+
+  "hallikar_breedName": "Hallikar",
+  "hallikar_origin": "Karnataka",
+  "hallikar_localNames": "",
+  "hallikar_milkYield": "2-4 liters/day",
+  "hallikar_lactationPeriod": "200-250 days",
+  "hallikar_description": "One of the oldest and most well-known draught breeds in India, Hallikar cattle are valued for their endurance, speed, and strength. They have a sleek, well-muscled body with a white or greyish coat and long, curved horns. They are highly active and commonly used for plowing fields and pulling carts, particularly in Karnataka’s agricultural regions.",
+
+  "amritmahal_breedName": "Amrit Mahal",
+  "amritmahal_origin": "Karnataka",
+  "amritmahal_localNames": "",
+  "amritmahal_milkYield": "2-3 liters/day",
+  "amritmahal_lactationPeriod": "200-230 days",
+  "amritmahal_description": "Amrit Mahal cattle are a powerful draught breed, known for their incredible stamina and endurance. They have a compact, strong body with a well-developed hump and a predominantly grey or white coat. These cattle are extensively used in military and transport applications due to their ability to travel long distances under harsh conditions. Their aggressive nature makes them more suitable for work rather than dairy production.",
+
+  "kangayam_breedName": "Kangayam",
+  "kangayam_origin": "Tamil Nadu",
+  "kangayam_localNames": "",
+  "kangayam_milkYield": "3-6 liters/day",
+  "kangayam_lactationPeriod": "220-260 days",
+  "kangayam_description": "Kangayam cattle are medium-sized, well-built, and well-adapted to the dry climate of Tamil Nadu. They are typically white or grey, with short, strong legs and an upright posture. Their strength and endurance make them highly suitable for plowing, cart-pulling, and other agricultural activities. Though not primarily used for milk production, they provide a moderate yield that is sufficient for household dairy needs.",
+
+  "bargur_breedName": "Bargur",
+  "bargur_origin": "Tamil Nadu",
+  "bargur_localNames": "Bargur Gidda",
+  "bargur_milkYield": "2-4 liters/day",
+  "bargur_lactationPeriod": "200-240 days",
+  "bargur_description": "Bargur cattle are small, agile, and well-suited for working in hilly and rugged terrains. They are recognized by their reddish-brown coat, lean frame, and quick movements. These cattle are commonly used for plowing in regions with uneven land and for pulling carts in remote areas. Though they produce a small quantity of milk, it has high nutritional value and is used by local farmers.",
+
+  "indian_cow_breeds_title": "Indian Cow Breeds",
+
+  "breed": "Breed",
+  "origin": "Origin",
+  "cost_approx": "Cost (Approx)",
+  "booking": "Booking",
+  "book_now": "Book Now",
+  "milk_yield": "Milk Yield",
+  "lactation_period": "Lactation Period",
+  "cost": "Cost",
+  "local_names": "Local Names",
+  "description": "Description",
+  "interested_in": "Interested in",
+  "contact_seller": "Contact Seller",
+
+  "removed_from_favorites": "Removed from Favorites",
+  "added_to_favorites": "Added to Favorites",
+
+  "select_language": "Select Language",
+  "apply_language": "Apply Language",
+
+  "editProfile": "Edit Profile",
+  "changePassword": "Change Password",
+  "settings": "Settings",
+  "changeLanguage": "Change Language",
+  "help": "Help",
+  "logoutConfirmation": "Are you sure you want to Log Out?",
+  "diseasePrediction": "Disease Prediction",
+  "noImageSelected": "No Image Selected",
+  "gallery": "Gallery",
+  "camera": "Camera",
+  "enterYourDetails": "Enter your details",
+  "analyzeImage": "Analyze image",
+  "aiAssistant": "AI Assistant",
+  "errorEncountered": "Sorry, I encountered an error",
+  "failedToGetResponse": "Failed to get response",
+  "askQuestion": "Ask a question or just say hello",
+  "assistantGreeting": "I'm here to help you!",
+  "cowBreedsInfo": "Feel free to ask about cows and their breeds.",
+  "askYourQuestions": "Ask Your Questions Here",
+  "failedToMakeCall": "Failed to make the call. Please try again.",
+  "permissionDenied": "Permission denied. Cannot make a call.",
+  "permissionPermanentlyDenied": "Permission permanently denied. Enable in settings.",
+  "describeSymptoms": "Describe symptoms or ask a specific question",
+  "analyzing": "Analyzing...",
+  "analysisReport": "Analysis Report",
+  "yourQuestion": "Your Question:",
+  "results": "Results:",
+  "recommendedDoctor": "Recommended Doctor",
+  "viewAll": "View All",
+  "india": "India",
+  "breadAIDescription":"Start a conversation about Indian cow breeds. You can send text or images of cows for identification.",
+
+  "farmVet": "FarmVet",
+  "bookAppointment": "BookAppointment",
+  "doctorName":"Doctor Name",
+  "specialty": "Speciality",
+  "selectDate": "Select Date",
+  "selectTime": "Select Time",
+  "appointmentBooked": "Appointment Booked",
+  "confirm": "Confirm",
+  "connect": "Connect",
+  "searchDoctors": "Search Doctors",
+  "currentAppointments": "Current Appointments",
+  "previousAppointments": "Previous Appointments",
+  "noCurrentAppointments": "No Current Appointments",
+  "findDoctor": "Find Doctor",
+  "noPreviousAppointments": "No Previous Appointments",
+  "noAppointments": "No Appointments",
+  "noDoctorsFound": "No Doctors Found",
+  "available": "Available",
+  "unavailable": "Unavailable",
+  "appointmentDetails": "Appointment Details",
+  "appointmentReason": "Appointment Reason",
+  "additionalNotes": "Additional Notes",
+  "pleaseCompleteAllFields": "Please Complete All Fields",
+  "appointmentBookedWith": "Appointment Booked With",
+  "all": "All",
+  "pleaseLogin": "Please Login",
+  "selectReason": "Select Reason"
+}
