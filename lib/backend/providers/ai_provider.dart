@@ -70,11 +70,11 @@ class AiProvider extends ChangeNotifier {
     required String prompt,
     required String imageBase64,
   }) async {
-    // String urlHosting =
-    //     "https://ai-model-gausampada.onrender.com/image_to_text";
-    String urlLocal = "http://10.0.42.125:5000/image_to_text";
+    String urlHosting =
+        "https://ai-model-gausampada.onrender.com/image_to_text";
+    // String urlLocal = "http://10.0.42.125:5000/image_to_text";
     final response = await http.post(
-      Uri.parse(urlLocal),
+      Uri.parse(urlHosting),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({
         "image_base64": imageBase64,

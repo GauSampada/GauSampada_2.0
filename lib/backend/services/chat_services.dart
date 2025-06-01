@@ -13,7 +13,8 @@ class ChatServices {
     // required this.baseUrl,
     required this.userId,
   });
-  final String baseUrl = "http://10.0.42.125:5000";
+  final String baseUrl = "https://ai-model-gausampada.onrender.com";
+
   Future<Map<String, dynamic>> sendMessage({
     required String sessionId,
     required String message,
