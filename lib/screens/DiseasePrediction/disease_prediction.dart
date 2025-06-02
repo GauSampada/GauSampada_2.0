@@ -19,7 +19,7 @@ class DiseasePredictionScreen extends StatelessWidget {
   Future<void> _makePhoneCall(BuildContext context, String phoneNumber) async {
     var status = await Permission.phone.request();
     if (status.isGranted) {
-      bool? result = await DirectCaller().makePhoneCall(phoneNumber);
+      bool? result = DirectCaller().makePhoneCall(phoneNumber);
       if (result != true) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -246,6 +246,12 @@ class DiseasePredictionScreen extends StatelessWidget {
                     FormattedText(
                       aiProvider.imageTextResponse,
                       style: const TextStyle(fontSize: 16),
+                      formatters: const [
+                        FormattedTextFormatter(
+                          patternChars: '**',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
                   ],
                 ),
