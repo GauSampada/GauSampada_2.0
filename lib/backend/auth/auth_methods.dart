@@ -84,7 +84,7 @@ class AuthService {
     // UserType userType=UserType.user;
     try {
       final GoogleSignIn googleSignIn = GoogleSignIn();
-      await googleSignIn.signOut();
+      // await googleSignIn.signOut();
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       if (googleUser == null) {
         return "Google sign-in aborted.";
@@ -128,6 +128,7 @@ class AuthService {
       res = "success";
     } catch (e) {
       res = "Error signing in with Google: ${e.toString()}";
+      print(res);
     }
     return res;
   }
