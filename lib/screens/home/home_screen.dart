@@ -2,7 +2,6 @@ import 'package:delightful_toast/toast/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:gausampada/backend/enums/user_type.dart';
 import 'package:gausampada/backend/providers/user_provider.dart';
-import 'package:gausampada/const/colors.dart';
 import 'package:gausampada/screens/breed/breed_info_screen.dart';
 import 'package:gausampada/const/toast.dart';
 import 'package:gausampada/screens/DiseasePrediction/disease_prediction.dart';

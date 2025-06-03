@@ -34,7 +34,7 @@ class CustomImagePicker {
     }
 
     String cloudName = "dvd0mdeon";
-    String apiKey = "364113567663957";
+    String apiKey = "536281556111358";
 
     String uploadUrl =
         "https://api.cloudinary.com/v1_1/$cloudName/image/upload";
