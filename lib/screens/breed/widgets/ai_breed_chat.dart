@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:formatted_text/formatted_text.dart';
 import 'package:gausampada/backend/models/message.dart';
 import 'package:gausampada/backend/providers/ai_chat_provider.dart';
+import 'package:gausampada/backend/providers/locale_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -43,7 +44,8 @@ class _AiBreedChatState extends State<AiBreedChat> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    final localeProvider = Provider.of<LocaleProvider>(context);
+    final currentLocale = localeProvider.locale;
     return Scaffold(
       // resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -89,7 +91,7 @@ class _AiBreedChatState extends State<AiBreedChat> {
                 // Messages list
                 Expanded(
                   child: chatProvider.messages.isEmpty
-                      ? _buildWelcomeScreen()
+                      ? _buildWelcomeScreen(currentLocale)
                       : ListView.builder(
                           controller: _scrollController,
                           padding: const EdgeInsets.all(16.0),
@@ -145,7 +147,7 @@ class _AiBreedChatState extends State<AiBreedChat> {
                   ),
 
                 // Input area
-                _buildInputArea(chatProvider),
+                _buildInputArea(chatProvider, currentLocale),
               ],
             );
           },
@@ -164,7 +166,7 @@ class _AiBreedChatState extends State<AiBreedChat> {
     return messages[index].isUser != messages[index + 1].isUser;
   }
 
-  Widget _buildWelcomeScreen() {
+  Widget _buildWelcomeScreen(Locale currentLocale) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -211,9 +213,12 @@ class _AiBreedChatState extends State<AiBreedChat> {
               Wrap(
                 spacing: 16,
                 children: [
-                  _buildSuggestionChip('Tell me about Andhra Pradesh cows'),
-                  _buildSuggestionChip('Identify best milking breeds'),
-                  _buildSuggestionChip('Indigenous cow benefits'),
+                  _buildSuggestionChip(
+                      'Tell me about Andhra Pradesh cows', currentLocale),
+                  _buildSuggestionChip(
+                      'Identify best milking breeds', currentLocale),
+                  _buildSuggestionChip(
+                      'Indigenous cow benefits', currentLocale),
                 ],
               ),
             ],
@@ -223,7 +228,7 @@ class _AiBreedChatState extends State<AiBreedChat> {
     );
   }
 
-  Widget _buildSuggestionChip(String text) {
+  Widget _buildSuggestionChip(String text, Locale currentLocale) {
     return ActionChip(
       avatar:
           Icon(Icons.chat_bubble_outline, size: 16, color: Colors.green[800]),
@@ -231,12 +236,13 @@ class _AiBreedChatState extends State<AiBreedChat> {
       backgroundColor: Colors.green[50],
       onPressed: () {
         final provider = Provider.of<BreedChatProvider>(context, listen: false);
-        provider.sendTextMessage(text);
+
+        provider.sendTextMessage(text, currentLocale);
       },
     );
   }
 
-  Widget _buildInputArea(BreedChatProvider chatProvider) {
+  Widget _buildInputArea(BreedChatProvider chatProvider, Locale currentLocale) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       decoration: BoxDecoration(
@@ -270,7 +276,7 @@ class _AiBreedChatState extends State<AiBreedChat> {
                   color: Colors.green[800],
                 ),
                 onPressed: () {
-                  _showImageSourceDialog(chatProvider);
+                  _showImageSourceDialog(chatProvider, currentLocale);
                 },
               ),
             ),
@@ -300,7 +306,7 @@ class _AiBreedChatState extends State<AiBreedChat> {
                 keyboardType: TextInputType.multiline,
                 onSubmitted: (text) {
                   if (text.trim().isNotEmpty) {
-                    chatProvider.sendTextMessage(text);
+                    chatProvider.sendTextMessage(text, currentLocale);
                     _textController.clear();
                   }
                 },
@@ -317,7 +323,8 @@ class _AiBreedChatState extends State<AiBreedChat> {
               icon: const Icon(Icons.send, color: Colors.white),
               onPressed: () {
                 if (_textController.text.trim().isNotEmpty) {
-                  chatProvider.sendTextMessage(_textController.text);
+                  chatProvider.sendTextMessage(
+                      _textController.text, currentLocale);
                   _textController.clear();
                   _focusNode.requestFocus();
                 }
@@ -329,7 +336,8 @@ class _AiBreedChatState extends State<AiBreedChat> {
     );
   }
 
-  void _showImageSourceDialog(BreedChatProvider chatProvider) {
+  void _showImageSourceDialog(
+      BreedChatProvider chatProvider, Locale currentLocale) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -348,7 +356,7 @@ class _AiBreedChatState extends State<AiBreedChat> {
               title: const Text('Choose from Gallery'),
               onTap: () {
                 Navigator.pop(context);
-                chatProvider.pickImageFromGallery();
+                chatProvider.pickImageFromGallery(currentLocale);
               },
             ),
             const Divider(),
@@ -357,7 +365,7 @@ class _AiBreedChatState extends State<AiBreedChat> {
               title: const Text('Take a Photo'),
               onTap: () {
                 Navigator.pop(context);
-                chatProvider.takePhoto();
+                chatProvider.takePhoto(currentLocale);
               },
             ),
           ],

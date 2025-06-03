@@ -4,8 +4,8 @@ import 'package:gausampada/backend/models/breed_model.dart';
 import 'package:gausampada/const/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gausampada/screens/breed/bread_list_tile.dart';
+import 'package:gausampada/screens/breed/widgets/ai_breed_chat.dart';
 
-import 'widgets/ai_breed_chat.dart';
 import 'widgets/grid_layout.dart';
 import 'widgets/list_schemes.dart';
 
@@ -56,6 +56,18 @@ class _BreadInfoScreenState extends State<BreadInfoScreen> {
           style: const TextStyle(color: Colors.white),
         ),
         backgroundColor: themeColor,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => const AiBreedChat()));
+        },
+        backgroundColor: Colors.white,
+        tooltip: "AI Breed Info",
+        child: const Icon(
+          Icons.chat,
+          color: Colors.green,
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

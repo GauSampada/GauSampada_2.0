@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:gausampada/screens/home/home_screen.dart';
+import 'package:gausampada/screens/maps/maps.dart';
 
 class InfoMainScreen extends StatefulWidget {
   const InfoMainScreen({super.key});
@@ -39,32 +41,45 @@ class InfoMainScreenState extends State<InfoMainScreen>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final List<Map<String, dynamic>> _features = [
+    final List<Map<String, dynamic>> features = [
       {
         "title": AppLocalizations.of(context)!.onboardingScreen2Title,
         "image": "assets/feed/cow_info.jpg",
         "color": const Color(0xFF4CAF50),
+        "navigate": const HomeScreen(
+          selectedIndex: 2,
+        )
       },
       {
         "title": AppLocalizations.of(context)!.onboardingScreen3Title,
         "image": "assets/feed/products.jpg",
         "color": const Color(0xFFF57C00),
+        "navigate": const HomeScreen(
+          selectedIndex: 1,
+        )
       },
       {
         "title": AppLocalizations.of(context)!.onboardingScreen4Title,
         "image": "assets/feed/farmers.jpg",
         "color": const Color(0xFF9C27B0),
+        "navigate": const MapScreen()
       },
       {
         "title": AppLocalizations.of(context)!.feedScreen4Title,
         "image": "assets/feed/ai_assist.jpg",
         "color": const Color(0xFFE91E63),
+        "navigate": const HomeScreen(
+          selectedIndex: 2,
+        )
       },
       {
         "title": AppLocalizations.of(context)!.onboardingScreen5Title,
         "image": "assets/feed/vetenary.jpg",
         "color": const Color(0xFF2196F3),
         "width": 0.7,
+        "navigate": const HomeScreen(
+          selectedIndex: 4,
+        )
       },
     ];
 
@@ -102,20 +117,27 @@ class InfoMainScreenState extends State<InfoMainScreen>
                     controller: controller,
                     onPageChanged: (index) {
                       setState(() {
-                        isLastPage = index == _features.length - 1;
+                        isLastPage = index == features.length - 1;
                         currentPage = index;
                         _animationController.reset();
                         _animationController.forward();
                       });
                     },
-                    itemCount: _features.length,
+                    itemCount: features.length,
                     itemBuilder: (context, index) {
                       return _buildInfoPage(
-                        _features[index]["title"],
-                        _features[index]["image"],
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => features[index]["navigate"],
+                            ),
+                          );
+                        },
+                        features[index]["title"],
+                        features[index]["image"],
                         theme,
-                        color: _features[index]["color"],
-                        imageWidth: _features[index]["width"] ?? 1.0,
+                        color: features[index]["color"],
+                        imageWidth: features[index]["width"] ?? 1.0,
                       );
                     },
                   ),
@@ -156,7 +178,7 @@ class InfoMainScreenState extends State<InfoMainScreen>
                     ),
 
                   // Right navigation icon (positioned at rightmost edge)
-                  if (currentPage < _features.length - 1)
+                  if (currentPage < features.length - 1)
                     Positioned(
                       right: 0,
                       top: 0,
@@ -198,7 +220,7 @@ class InfoMainScreenState extends State<InfoMainScreen>
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
-                        _features.length,
+                        features.length,
                         (index) => Container(
                           width: index == currentPage ? 16 : 8,
                           height: 8,
@@ -206,7 +228,7 @@ class InfoMainScreenState extends State<InfoMainScreen>
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
                             color: index == currentPage
-                                ? _features[index]["color"]
+                                ? features[index]["color"]
                                 : Colors.white.withOpacity(0.5),
                           ),
                         ),
@@ -221,77 +243,80 @@ class InfoMainScreenState extends State<InfoMainScreen>
   }
 
   Widget _buildInfoPage(String title, String imageAsset, ThemeData theme,
-      {double imageWidth = 1.0, Color? color}) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        // Background image with gradient overlay
-        Image.asset(
-          imageAsset,
-          fit: BoxFit.cover,
-        ),
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.black.withOpacity(0.1),
-                Colors.black.withOpacity(0.7),
-              ],
+      {double imageWidth = 1.0, Color? color, void Function()? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Background image with gradient overlay
+          Image.asset(
+            imageAsset,
+            fit: BoxFit.cover,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.black.withOpacity(0.1),
+                  Colors.black.withOpacity(0.7),
+                ],
+              ),
             ),
           ),
-        ),
 
-        // Content
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  shadows: [
-                    Shadow(
-                      offset: Offset(1, 1),
-                      blurRadius: 3,
-                      color: Colors.black45,
+          // Content
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1, 1),
+                        blurRadius: 3,
+                        color: Colors.black45,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 14, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: color ?? theme.primaryColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        AppLocalizations.of(context)!.learnMore,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 12),
-              Row(
-                children: [
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: color ?? theme.primaryColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context)!.learnMore,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              // Extra space at bottom for page indicator
-              const SizedBox(height: 30),
-            ],
+                // Extra space at bottom for page indicator
+                const SizedBox(height: 30),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

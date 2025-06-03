@@ -14,11 +14,13 @@ class ChatServices {
     required this.userId,
   });
   final String baseUrl = "https://ai-model-gausampada.onrender.com";
+  // final String baseUrl = "http://192.168.55.104:5000";
 
   Future<Map<String, dynamic>> sendMessage({
     required String sessionId,
     required String message,
     String? imageBase64,
+    required String locale,
   }) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/chatBreed'),
@@ -28,6 +30,7 @@ class ChatServices {
         'session_id': sessionId,
         'message': message,
         'image': imageBase64,
+        'language': locale,
       }),
     );
 

@@ -5,8 +5,7 @@ import 'package:gausampada/const/colors.dart';
 import 'package:gausampada/screens/auth/login.dart';
 import 'package:gausampada/screens/breed/breed_info_screen.dart';
 import 'package:gausampada/screens/breed/widgets/ai_breed_chat.dart';
-import 'package:gausampada/screens/chat_bot/ai_assistance.dart';
-import 'package:gausampada/screens/feed/widgets/bookings_swiper.dart';
+import 'package:gausampada/screens/breed/widgets/grid_layout.dart';
 import 'package:gausampada/screens/feed/widgets/breed_info_card.dart';
 import 'package:gausampada/screens/feed/widgets/custom_headings.dart';
 import 'package:gausampada/screens/feed/widgets/info_main.dart';
@@ -18,6 +17,7 @@ import 'package:gausampada/screens/market/market_screen.dart';
 import 'package:gausampada/screens/notifications/notification.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gausampada/screens/profile/user_profile.dart';
+import 'package:gausampada/screens/settings/change_language.dart';
 import 'package:gausampada/screens/settings/settings.dart';
 import 'package:gausampada/screens/widgets/dialogs/logout_dialog.dart';
 import 'package:provider/provider.dart';
@@ -200,31 +200,33 @@ class _FeedScreenState extends State<FeedScreen> {
 
             const SizedBox(height: 10),
             // My Orders Section
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                children: [
-                  CustomHeadingsScreen(
-                    label: AppLocalizations.of(context)!.dairyProducts,
-                    onPressed: () {},
-                    icon: Icons.shopping_bag_rounded,
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
-                          blurRadius: 8,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: const SwiperBuilder(),
-                  ),
-                ],
-              ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: CattleServicesGrid(),
+
+              // Column(
+              //   children: [
+              //     CustomHeadingsScreen(
+              //       label: AppLocalizations.of(context)!.dairyProducts,
+              //       onPressed: () {},
+              //       icon: Icons.shopping_bag_rounded,
+              //     ),
+              //     const SizedBox(height: 8),
+              //     Container(
+              //       decoration: BoxDecoration(
+              //         borderRadius: BorderRadius.circular(20),
+              //         boxShadow: [
+              //           BoxShadow(
+              //             color: Colors.black.withOpacity(0.05),
+              //             blurRadius: 8,
+              //             offset: const Offset(0, 2),
+              //           ),
+              //         ],
+              //       ),
+              //       child: const SwiperBuilder(),
+              //     ),
+              //   ],
+              // ),
             ),
             const SizedBox(height: 10),
           ],
@@ -284,6 +286,18 @@ class _FeedScreenState extends State<FeedScreen> {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const NotificationScreen()));
+              },
+            ),
+            Navbaritems(
+              icon: Icons.translate,
+              label: AppLocalizations.of(context)!.changeLanguage,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LanguageSelectionScreen(),
+                  ),
+                );
               },
             ),
             Navbaritems(

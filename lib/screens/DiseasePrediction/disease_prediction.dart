@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:direct_caller_sim_choice/direct_caller_sim_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:gausampada/backend/providers/ai_provider.dart';
+import 'package:gausampada/backend/providers/locale_provider.dart';
 import 'package:gausampada/const/colors.dart';
 import 'package:gausampada/const/image_picker_.dart';
 import 'package:gausampada/screens/chat_bot/ai_assistance.dart';
@@ -44,7 +45,8 @@ class DiseasePredictionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final aiProvider = Provider.of<AiProvider>(context);
     final imagePickerService = Provider.of<ImagePickerService>(context);
-
+    final localeProvider = Provider.of<LocaleProvider>(context);
+    final currentLocale = localeProvider.locale;
     return Scaffold(
       // floatingActionButton: FloatingActionButton(
       //   // onPressed: () {
@@ -145,6 +147,7 @@ class DiseasePredictionScreen extends StatelessWidget {
                           context: context,
                           image: currentImage,
                           prompt: currentPrompt,
+                          language: currentLocale,
                         );
 
                         // Clear text field after submission
@@ -249,6 +252,10 @@ class DiseasePredictionScreen extends StatelessWidget {
                       formatters: const [
                         FormattedTextFormatter(
                           patternChars: '**',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        FormattedTextFormatter(
+                          patternChars: '*',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
