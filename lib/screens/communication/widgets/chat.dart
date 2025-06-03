@@ -7,6 +7,8 @@ import 'package:gausampada/backend/providers/appoinment_chat_provider.dart';
 import 'package:gausampada/backend/providers/booking_provider.dart';
 import 'package:gausampada/const/colors.dart';
 import 'package:gausampada/screens/communication/widgets/call.dart';
+import 'package:gausampada/screens/communication/widgets/image_viewer.dart';
+import 'package:gausampada/screens/communication/widgets/videoplayer.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -474,42 +476,59 @@ class _AppointmentChatScreenState extends State<AppointmentChatScreen> {
                     style: const TextStyle(color: blackColor),
                   ),
                 if (message.type == MessageType.image && !isPending)
-                  Image.network(
-                    message.content,
-                    width: 200,
-                    height: 200,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => const Text(
-                      'Failed to load image',
-                      style: TextStyle(color: Colors.red),
-                    ),
-                  ),
-                if (message.type == MessageType.image && isPending)
-                  const Text(
-                    'Uploading image...',
-                    style: TextStyle(color: blackColor),
-                  ),
-                if (message.type == MessageType.video && !isPending)
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Image.network(
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ImageViewerPage(imageUrl: message.content),
+                        ),
+                      );
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
                         message.content,
                         width: 200,
                         height: 200,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
-                            const Text(
-                          'Failed to load video',
-                          style: TextStyle(color: Colors.red),
-                        ),
+                        errorBuilder: (context, error, stackTrace) {
+                          print(
+                              'Image Load Error: $error\nStackTrace: $stackTrace');
+                          return const Text(
+                            'Failed to load image',
+                            style: TextStyle(color: Colors.red),
+                          );
+                        },
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Container(
+                            width: 200,
+                            height: 200,
+                            color: Colors.grey.shade300,
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: themeColor,
+                                value: loadingProgress.expectedTotalBytes !=
+                                        null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                      const Icon(
-                        Icons.play_circle_fill,
-                        color: backgroundColor,
-                        size: 50,
-                      ),
-                    ],
+                    ),
+                  ),
+                if (message.type == MessageType.video && !isPending)
+                  SizedBox(
+                    width: 200,
+                    height: 200,
+                    child: VideoMessageWidget(
+                      videoURL: message.content,
+                    ),
                   ),
                 if (message.type == MessageType.video && isPending)
                   const Text(

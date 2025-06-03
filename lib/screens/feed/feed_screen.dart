@@ -145,10 +145,6 @@ class _FeedScreenState extends State<FeedScreen> {
                     },
                     icon: Icons.pets_rounded,
                   ),
-                  ElevatedButton(
-                      onPressed: () => addDoctorsToFirestore(context),
-                      child: const Text('Click')),
-                  const SizedBox(height: 8),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),

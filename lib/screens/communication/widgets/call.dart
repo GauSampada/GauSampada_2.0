@@ -37,8 +37,7 @@ void generateGoogleMeetLink(BuildContext context) async {
     if (canLaunch) {
       await launchUrl(
         Uri.parse(meetUrl),
-        mode:
-            LaunchMode.externalNonBrowserApplication, // Prefer Google Meet app
+        mode: LaunchMode.externalNonBrowserApplication,
       );
     } else {
       // Fallback: Try launching in browser
