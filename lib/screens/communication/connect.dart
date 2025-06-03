@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gausampada/backend/enums/user_type.dart';
 import 'package:gausampada/backend/models/service_booking.dart';
@@ -5,6 +6,7 @@ import 'package:gausampada/backend/models/user_model.dart';
 import 'package:gausampada/backend/providers/booking_provider.dart';
 import 'package:gausampada/const/colors.dart';
 import 'package:gausampada/screens/communication/widgets/chat.dart';
+import 'package:gausampada/screens/communication/widgets/doctor_details_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -200,7 +202,7 @@ class _AppointmentScreenState extends State<AppointmentScreen>
           return DoctorCard(
             doctor: doctor,
             onBookAppointment: () =>
-                _showBookAppointmentDialog(context, provider, doctor),
+                showBookAppointmentDialog(context, provider, doctor),
           );
         },
       ),
@@ -349,7 +351,56 @@ class _AppointmentScreenState extends State<AppointmentScreen>
     }
   }
 
-  Future<void> _showBookAppointmentDialog(
+  Future<void> _viewDoctorDetails(String appointmentId) async {
+    final appointmentProvider =
+        Provider.of<AppointmentProvider>(context, listen: false);
+    final appointment = appointmentProvider.currentAppointments.firstWhere(
+      (app) => app.id == appointmentId,
+      orElse: () => Appointment(
+        id: '',
+        doctorId: '',
+        farmerId: '',
+        doctorName: '',
+        farmerName: '',
+        appointmentDate: DateTime.now(),
+        status: '',
+        createdAt: DateTime.now(),
+      ),
+    );
+
+    if (appointment.doctorId.isNotEmpty) {
+      try {
+        final docSnapshot = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(appointment.doctorId)
+            .get();
+        if (docSnapshot.exists) {
+          final doctor = UserModel.fromSnapshot(docSnapshot);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DoctorDetailsScreen(doctor: doctor),
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Doctor details not found')),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error fetching doctor details: $e')),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('No doctor associated with this appointment')),
+      );
+    }
+  }
+
+  Future<void> showBookAppointmentDialog(
     BuildContext context,
     AppointmentProvider provider,
     UserModel doctor,
@@ -506,7 +557,7 @@ class _AppointmentScreenState extends State<AppointmentScreen>
                               size: 16, color: themeColor),
                           onTap: () {
                             Navigator.pop(context);
-                            _showBookAppointmentDialog(
+                            showBookAppointmentDialog(
                                 context, provider, doctor);
                           },
                         );
@@ -526,10 +577,10 @@ class DoctorCard extends StatelessWidget {
   final VoidCallback onBookAppointment;
 
   const DoctorCard({
-    Key? key,
+    super.key,
     required this.doctor,
     required this.onBookAppointment,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -570,9 +621,9 @@ class DoctorCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 4),
-                      const Text(
-                        'General',
-                        style: TextStyle(color: Colors.grey),
+                      Text(
+                        doctor.doctorDetails!['specialization'],
+                        style: const TextStyle(color: Colors.grey),
                       ),
                       const SizedBox(height: 4),
                       if (doctor.location != null)
@@ -597,7 +648,15 @@ class DoctorCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            DoctorDetailsScreen(doctor: doctor),
+                      ),
+                    );
+                  },
                   style: OutlinedButton.styleFrom(
                     foregroundColor: themeColor,
                     side: const BorderSide(color: themeColor),

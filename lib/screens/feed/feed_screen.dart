@@ -6,6 +6,7 @@ import 'package:gausampada/screens/auth/login.dart';
 import 'package:gausampada/screens/breed/breed_info_screen.dart';
 import 'package:gausampada/screens/breed/widgets/ai_breed_chat.dart';
 import 'package:gausampada/screens/chat_bot/ai_assistance.dart';
+import 'package:gausampada/screens/communication/add_doctors.dart';
 import 'package:gausampada/screens/feed/widgets/bookings_swiper.dart';
 import 'package:gausampada/screens/feed/widgets/breed_info_card.dart';
 import 'package:gausampada/screens/feed/widgets/custom_headings.dart';
@@ -144,6 +145,9 @@ class _FeedScreenState extends State<FeedScreen> {
                     },
                     icon: Icons.pets_rounded,
                   ),
+                  ElevatedButton(
+                      onPressed: () => addDoctorsToFirestore(context),
+                      child: const Text('Click')),
                   const SizedBox(height: 8),
                   Container(
                     decoration: BoxDecoration(

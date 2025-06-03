@@ -9,6 +9,7 @@ class UserModel {
   final String? photoURL;
   final String? location;
   final UserType userType;
+  final Map<String, dynamic>? doctorDetails; // Added for doctor-specific fields
 
   UserModel({
     required this.uid,
@@ -18,6 +19,7 @@ class UserModel {
     this.photoURL = "",
     this.location = "Bhimavaram",
     required this.userType,
+    this.doctorDetails,
   });
 
   Map<String, dynamic> toMap() {
@@ -29,6 +31,7 @@ class UserModel {
       'photoURL': photoURL,
       'location': location,
       'userType': userType.name,
+      'doctorDetails': doctorDetails, // Include doctorDetails if present
     };
   }
 
@@ -47,6 +50,15 @@ class UserModel {
       photoURL: map['photoURL'] ?? '',
       location: map['location'] ?? '',
       userType: fromStringToEnum(map['userType'] as String),
+      doctorDetails:
+          map['doctorDetails'] as Map<String, dynamic>?, // Parse doctorDetails
+    );
+  }
+
+  static UserType fromStringToEnum(String userType) {
+    return UserType.values.firstWhere(
+      (type) => type.name.toLowerCase() == userType.toLowerCase(),
+      orElse: () => UserType.farmer, // Default to farmer if not found
     );
   }
 }

@@ -516,30 +516,39 @@ class _AppointmentChatScreenState extends State<AppointmentChatScreen> {
                     'Uploading video...',
                     style: TextStyle(color: blackColor),
                   ),
-                Text(
-                  timeFormat.format(message.timestamp),
-                  style: TextStyle(color: Colors.grey.shade600, fontSize: 10),
-                ),
-                if (isMe && message.isRead && !isPending)
-                  const SizedBox(
-                    // width: 18,
-                    // height: 15,
-                    child: Stack(
-                      alignment: Alignment.centerRight,
-                      children: [
-                        Positioned(
-                          right: 8,
-                          child:
-                              Icon(Icons.check, size: 15, color: Colors.blue),
-                        ),
-                        Positioned(
-                          right: 0,
-                          child:
-                              Icon(Icons.check, size: 15, color: Colors.blue),
-                        ),
-                      ],
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      timeFormat.format(message.timestamp),
+                      style:
+                          TextStyle(color: Colors.grey.shade600, fontSize: 10),
                     ),
-                  ),
+                    const SizedBox(
+                      width: 3,
+                    ),
+                    if (isMe && message.isRead && !isPending)
+                      const SizedBox(
+                        width: 18,
+                        height: 15,
+                        child: Stack(
+                          alignment: Alignment.centerRight,
+                          children: [
+                            Positioned(
+                              right: 5,
+                              child: Icon(Icons.check,
+                                  size: 15, color: Colors.blue),
+                            ),
+                            Positioned(
+                              right: 0,
+                              child: Icon(Icons.check,
+                                  size: 15, color: Colors.blue),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
               ],
             ),
             if (isPending)
