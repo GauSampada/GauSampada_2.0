@@ -105,7 +105,23 @@ class FirebaseService {
       if (!userDoc.exists) return false;
 
       final farmerName = userDoc.data()!['name'] ?? '';
-      final chatId = _firestore.collection('chats').doc().id;
+
+      // Generate deterministic chatId by sorting farmerId and doctorId
+      final List<String> participantIds = [user.uid, doctorId]..sort();
+      final String chatId = '${participantIds[0]}_${participantIds[1]}';
+
+      // Check if a chat already exists for this pair
+      final existingChat =
+          await _firestore.collection('chats').doc(chatId).get();
+      if (!existingChat.exists) {
+        // Create new chat if none exists
+        await _firestore.collection('chats').doc(chatId).set({
+          'participants': [user.uid, doctorId],
+          'createdAt': Timestamp.fromDate(DateTime.now()),
+          'lastMessage': '',
+          'lastMessageTimestamp': Timestamp.fromDate(DateTime.now()),
+        });
+      }
 
       final appointment = Appointment(
         id: _firestore.collection('appointments').doc().id,
@@ -124,12 +140,6 @@ class FirebaseService {
           .collection('appointments')
           .doc(appointment.id)
           .set(appointment.toMap());
-
-      await _firestore.collection('chats').doc(chatId).set({
-        'appointmentId': appointment.id,
-        'participants': [user.uid, doctorId],
-        'createdAt': Timestamp.fromDate(DateTime.now()),
-      });
 
       return true;
     } catch (e) {
@@ -203,6 +213,15 @@ class FirebaseService {
           .collection('messages')
           .doc(message.id)
           .set(message.toMap());
+
+      // Update last message in chat for sorting/display purposes
+      await _firestore.collection('chats').doc(chatId).update({
+        'lastMessage': type == MessageType.text
+            ? content
+            : '[${type.toString().split('.').last}]',
+        'lastMessageTimestamp': Timestamp.fromDate(DateTime.now()),
+      });
+
       return true;
     } catch (e) {
       print('Error sending message: $e');
