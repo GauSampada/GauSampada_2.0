@@ -94,6 +94,23 @@ class AppointmentProvider extends ChangeNotifier {
     }
   }
 
+  Stream<List<Appointment>> streamCurrentAppointments() {
+    if (currentUser == null) return Stream.value([]);
+    try {
+      return _firebaseService.streamAppointments(
+        userId: currentUser!.uid,
+        userType: currentUser!.userType,
+        statusFilter: ['pending', 'approved', 'scheduled'],
+      ).map((snapshot) => snapshot.docs
+          .map((doc) =>
+              Appointment.fromMap(doc.data() as Map<String, dynamic>, doc.id))
+          .toList());
+    } catch (e) {
+      print('Error streaming appointments: $e');
+      return Stream.value([]);
+    }
+  }
+
   // Load previous appointments
   Future<void> _loadPreviousAppointments() async {
     if (_currentUser == null) return;
