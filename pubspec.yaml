@@ -66,6 +66,7 @@ dependencies:
   intl: ^0.19.0
   flutter_svg: ^2.1.0
   flutter_gemini: ^3.0.0
+  cloudinary_public: ^0.23.1
 
 
 
