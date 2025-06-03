@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:direct_caller_sim_choice/direct_caller_sim_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gausampada/backend/enums/user_type.dart';
@@ -9,11 +6,10 @@ import 'package:gausampada/backend/models/service_booking.dart';
 import 'package:gausampada/backend/providers/appoinment_chat_provider.dart';
 import 'package:gausampada/backend/providers/booking_provider.dart';
 import 'package:gausampada/const/colors.dart';
+import 'package:gausampada/screens/communication/widgets/call.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AppointmentChatScreen extends StatefulWidget {
   final String appointmentId;
@@ -76,61 +72,6 @@ class _AppointmentChatScreenState extends State<AppointmentChatScreen> {
           ),
         );
       }
-    }
-  }
-
-  void generateGoogleMeetLink(BuildContext context) async {
-    const meetUrl = 'https://meet.google.com/pzm-woon-pok';
-    debugPrint('Attempting to launch: $meetUrl');
-
-    try {
-      final canLaunch = await canLaunchUrl(Uri.parse(meetUrl));
-      debugPrint('Can launch $meetUrl: $canLaunch');
-      if (canLaunch) {
-        await launchUrl(
-          Uri.parse(meetUrl),
-          mode: LaunchMode
-              .externalNonBrowserApplication, // Prefer Google Meet app
-        );
-      } else {
-        // Fallback: Try launching in browser
-        debugPrint('Falling back to in-app browser for $meetUrl');
-        await launchUrl(
-          Uri.parse(meetUrl),
-          mode: LaunchMode.inAppBrowserView,
-        );
-        // Show fallback option to copy URL
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text('Could not open Google Meet. Copy link?'),
-            action: SnackBarAction(
-              label: 'Copy',
-              onPressed: () {
-                Clipboard.setData(const ClipboardData(text: meetUrl));
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Link copied to clipboard')),
-                );
-              },
-            ),
-          ),
-        );
-      }
-    } catch (e) {
-      debugPrint('Error launching $meetUrl: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error launching Google Meet: $e'),
-          action: SnackBarAction(
-            label: 'Copy',
-            onPressed: () {
-              Clipboard.setData(const ClipboardData(text: meetUrl));
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Link copied to clipboard')),
-              );
-            },
-          ),
-        ),
-      );
     }
   }
 
@@ -274,29 +215,6 @@ class _AppointmentChatScreenState extends State<AppointmentChatScreen> {
           ),
         );
       }
-    }
-  }
-
-  Future<void> _makePhoneCall(BuildContext context, String phoneNumber) async {
-    var status = await Permission.phone.request();
-    if (status.isGranted) {
-      bool? result = await DirectCaller().makePhoneCall(phoneNumber);
-      if (result != true) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-              content: Text("Failed to make the call. Please try again.")),
-        );
-      }
-    } else if (status.isDenied) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Permission denied. Cannot make a call.")),
-      );
-    } else if (status.isPermanentlyDenied) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Permission permanently denied. Enable in settings."),
-        ),
-      );
     }
   }
 
@@ -453,7 +371,7 @@ class _AppointmentChatScreenState extends State<AppointmentChatScreen> {
           ),
           actions: [
             IconButton(
-              onPressed: () => _makePhoneCall(context, '6303642297'),
+              onPressed: () => makePhoneCall(context, '6303642297'),
               icon: const Icon(Icons.phone, color: backgroundColor),
             ),
             IconButton(
@@ -604,13 +522,24 @@ class _AppointmentChatScreenState extends State<AppointmentChatScreen> {
                 ),
                 if (isMe && message.isRead && !isPending)
                   const SizedBox(
-                      width: 30,
-                      child: Row(
-                        children: [
-                          Icon(Icons.check, size: 15, color: Colors.blue),
-                          Icon(Icons.check, size: 15, color: Colors.blue),
-                        ],
-                      )),
+                    // width: 18,
+                    // height: 15,
+                    child: Stack(
+                      alignment: Alignment.centerRight,
+                      children: [
+                        Positioned(
+                          right: 8,
+                          child:
+                              Icon(Icons.check, size: 15, color: Colors.blue),
+                        ),
+                        Positioned(
+                          right: 0,
+                          child:
+                              Icon(Icons.check, size: 15, color: Colors.blue),
+                        ),
+                      ],
+                    ),
+                  ),
               ],
             ),
             if (isPending)

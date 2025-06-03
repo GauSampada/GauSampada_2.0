@@ -3,13 +3,10 @@ import 'package:gausampada/backend/enums/user_type.dart';
 import 'package:gausampada/backend/models/service_booking.dart';
 import 'package:gausampada/backend/models/user_model.dart';
 import 'package:gausampada/backend/providers/booking_provider.dart';
+import 'package:gausampada/const/colors.dart';
 import 'package:gausampada/screens/communication/widgets/chat.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-
-const Color themeColor = Color(0xFF0A7643);
-const Color backgroundColor = Colors.white;
-const Color blackColor = Colors.black;
 
 class AppointmentScreen extends StatefulWidget {
   const AppointmentScreen({super.key});
@@ -97,7 +94,7 @@ class _AppointmentScreenState extends State<AppointmentScreen>
             body: Center(
               child: Text(
                 "User type not found. Please check your account.",
-                style: TextStyle(color: blackColor),
+                style: TextStyle(fontSize: 13, color: blackColor),
               ),
             ),
           );
@@ -109,7 +106,7 @@ class _AppointmentScreenState extends State<AppointmentScreen>
             backgroundColor: themeColor,
             title: const Text(
               "Appointments",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(fontSize: 13, color: Colors.white),
             ),
             bottom: TabBar(
               controller: _tabController,
@@ -179,14 +176,14 @@ class _AppointmentScreenState extends State<AppointmentScreen>
           children: [
             const Text(
               "No doctors available at the moment.",
-              style: TextStyle(color: blackColor),
+              style: TextStyle(fontSize: 13, color: blackColor),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: themeColor),
               onPressed: () => provider.refreshData(),
-              child:
-                  const Text("Refresh", style: TextStyle(color: Colors.white)),
+              child: const Text("Refresh",
+                  style: TextStyle(fontSize: 13, color: Colors.white)),
             ),
           ],
         ),
@@ -228,14 +225,14 @@ class _AppointmentScreenState extends State<AppointmentScreen>
               children: [
                 Text(
                   'Error: ${snapshot.error}',
-                  style: const TextStyle(color: blackColor),
+                  style: const TextStyle(fontSize: 13, color: blackColor),
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: themeColor),
                   onPressed: () => provider.refreshData(),
                   child: const Text("Retry",
-                      style: TextStyle(color: Colors.white)),
+                      style: TextStyle(fontSize: 13, color: Colors.white)),
                 ),
               ],
             ),
@@ -249,13 +246,13 @@ class _AppointmentScreenState extends State<AppointmentScreen>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text("No current appointments.",
-                    style: TextStyle(color: blackColor)),
+                    style: TextStyle(fontSize: 13, color: blackColor)),
                 const SizedBox(height: 16),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: themeColor),
                   onPressed: () => provider.refreshData(),
                   child: const Text("Refresh",
-                      style: TextStyle(color: Colors.white)),
+                      style: TextStyle(fontSize: 13, color: Colors.white)),
                 ),
               ],
             ),
@@ -776,18 +773,19 @@ class AppointmentCard extends StatelessWidget {
                       style:
                           ElevatedButton.styleFrom(backgroundColor: themeColor),
                       child: const Text('Chat',
-                          style: TextStyle(color: Colors.white)),
+                          style: TextStyle(fontSize: 13, color: Colors.white)),
                     ),
                   ],
                   if (userType == 'doctor' &&
                       appointment.status == 'approved') ...[
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 6),
                     ElevatedButton(
                       onPressed: () => onUpdateStatus!('completed'),
-                      style:
-                          ElevatedButton.styleFrom(backgroundColor: themeColor),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: themeColor,
+                      ),
                       child: const Text('Complete',
-                          style: TextStyle(color: Colors.white)),
+                          style: TextStyle(color: Colors.white, fontSize: 13)),
                     ),
                   ],
                 ],
