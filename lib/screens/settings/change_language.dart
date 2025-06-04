@@ -5,14 +5,13 @@ import 'package:gausampada/const/languages.dart';
 import 'package:gausampada/l10n/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:ui';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LanguageSelectionScreen extends StatefulWidget {
   const LanguageSelectionScreen({super.key});
 
   @override
-  _LanguageSelectionScreenState createState() =>
+  State<LanguageSelectionScreen> createState() =>
       _LanguageSelectionScreenState();
 }
 

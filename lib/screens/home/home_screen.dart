@@ -15,7 +15,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   final bool isLoginOrSignUp;
-  const HomeScreen({super.key, this.isLoginOrSignUp = false});
+  final int? selectedIndex;
+  const HomeScreen(
+      {super.key, this.isLoginOrSignUp = false, this.selectedIndex = 0});
 
   @override
   State<HomeScreen> createState() => HomeScreenState();
@@ -25,6 +27,11 @@ class HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   UserProvider? userProvider;
+  @override
+  void initState() {
+    super.initState();
+    currentIndex = widget.selectedIndex ?? 0;
+  }
 
   @override
   void didChangeDependencies() {

@@ -2,7 +2,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:gausampada/backend/models/message.dart';
 import 'package:gausampada/backend/services/chat_services.dart';
 import 'package:gausampada/main.dart';
@@ -80,7 +79,7 @@ class BreedChatProvider extends ChangeNotifier {
   }
 
   // Send text message
-  Future<void> sendTextMessage(String content) async {
+  Future<void> sendTextMessage(String content, Locale locale) async {
     if (content.trim().isEmpty) return;
 
     if (_currentSessionId.isEmpty) {
@@ -105,9 +104,9 @@ class BreedChatProvider extends ChangeNotifier {
 
       // Send to API
       final response = await _chatServices.sendMessage(
-        sessionId: _currentSessionId,
-        message: content,
-      );
+          sessionId: _currentSessionId,
+          message: content,
+          locale: locale.languageCode);
 
       // Add response to UI
       final botMessage = Message(
@@ -130,7 +129,8 @@ class BreedChatProvider extends ChangeNotifier {
   }
 
   // Send image message
-  Future<void> sendImageMessage(File image, [String? caption]) async {
+  Future<void> sendImageMessage(File image, Locale locale,
+      [String? caption]) async {
     if (_currentSessionId.isEmpty) {
       await createNewChat();
     }
@@ -161,6 +161,7 @@ class BreedChatProvider extends ChangeNotifier {
         sessionId: _currentSessionId,
         message: caption ?? 'What breed of cow is in this image?',
         imageBase64: base64Image,
+        locale: locale.languageCode,
       );
 
       // Add response to UI
@@ -184,22 +185,22 @@ class BreedChatProvider extends ChangeNotifier {
   }
 
   // Pick image from gallery
-  Future<void> pickImageFromGallery([String? caption]) async {
+  Future<void> pickImageFromGallery(Locale locale, [String? caption]) async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
-      await sendImageMessage(File(image.path), caption);
+      await sendImageMessage(File(image.path), locale, caption);
     }
   }
 
   // Take picture from camera
-  Future<void> takePhoto([String? caption]) async {
+  Future<void> takePhoto(Locale locale, [String? caption]) async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.camera);
 
     if (image != null) {
-      await sendImageMessage(File(image.path), caption);
+      await sendImageMessage(File(image.path), locale, caption);
     }
   }
 

@@ -31,6 +31,7 @@ class AiProvider extends ChangeNotifier {
     required BuildContext context,
     required XFile image,
     required String prompt,
+    required Locale language,
   }) async {
     if (prompt.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -49,6 +50,7 @@ class AiProvider extends ChangeNotifier {
       await getImageTextResponse(
         prompt: prompt,
         imageBase64: base64Image,
+        language: language,
       );
 
       // Store the analyzed image path and prompt
@@ -59,6 +61,7 @@ class AiProvider extends ChangeNotifier {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error: $e")),
       );
+      print(e.toString());
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -69,16 +72,18 @@ class AiProvider extends ChangeNotifier {
   Future<void> getImageTextResponse({
     required String prompt,
     required String imageBase64,
+    required Locale language,
   }) async {
     String urlHosting =
         "https://ai-model-gausampada.onrender.com/image_to_text";
-    // String urlLocal = "http://10.0.42.125:5000/image_to_text";
+    // String urlLocal = "http://192.168.55.104:5000/image_to_text";
     final response = await http.post(
       Uri.parse(urlHosting),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({
         "image_base64": imageBase64,
         "prompt": prompt,
+        "language": language.languageCode,
       }),
     );
 
