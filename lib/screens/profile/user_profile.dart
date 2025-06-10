@@ -1,7 +1,9 @@
+import 'package:delightful_toast/toast/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:gausampada/backend/auth/auth_methods.dart';
 import 'package:gausampada/backend/providers/user_provider.dart';
 import 'package:gausampada/const/colors.dart';
+import 'package:gausampada/const/toast.dart';
 import 'package:gausampada/screens/settings/change_language.dart';
 import 'package:gausampada/screens/widgets/dialogs/logout_dialog.dart';
 import 'package:gausampada/screens/auth/login.dart';
@@ -35,7 +37,7 @@ class UserProfileScreen extends StatelessWidget {
                   children: [
                     Stack(
                       children: [
-                        provider.user.photoURL == ''
+                        provider.user.photoURL == ""
                             ? CircleAvatar(
                                 radius: 60,
                                 backgroundColor: Colors.lightGreen,
@@ -178,11 +180,34 @@ class UserProfileScreen extends StatelessWidget {
                             Navigator.of(context).pop();
                           },
                           option1: AppLocalizations.of(context)!.yes,
-                          onPressed1: () {
-                            AuthService().logout();
-                            Navigator.of(context).pushReplacement(
+                          onPressed1: () async {
+                            final result = await AuthService().logout();
+                            if (result == "success") {
+                              Provider.of<UserProvider>(context, listen: false)
+                                  .clearUserData();
+                              toastMessage(
+                                context: context,
+                                message: 'Logged out successfully',
+                                leadingIcon: const Icon(Icons.check),
+                                toastColor: Colors.green[200],
+                                borderColor: Colors.green,
+                                position: DelightSnackbarPosition.top,
+                              );
+                              Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
-                                    builder: (context) => const LoginScreen()));
+                                    builder: (context) => const LoginScreen()),
+                                (Route<dynamic> route) => false,
+                              );
+                            } else {
+                              toastMessage(
+                                context: context,
+                                message: result,
+                                leadingIcon: const Icon(Icons.error),
+                                toastColor: Colors.red[200],
+                                borderColor: Colors.red,
+                                position: DelightSnackbarPosition.top,
+                              );
+                            }
                           },
                         );
                       },

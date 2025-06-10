@@ -74,7 +74,17 @@
     "appointmentBookedWith",
     "all",
     "pleaseLogin",
-    "selectReason"
+    "selectReason",
+    "doctorAvailabilityLabel",
+    "signupFieldRequired",
+    "doctorDetailsTitle",
+    "doctorSpecializationLabel",
+    "doctorExperienceLabel",
+    "doctorQualificationLabel",
+    "doctorConsultationFeeLabel",
+    "saveButton",
+    "profileUpdatedSuccess",
+    "profileUpdateFailed"
   ],
 
   "ta": [
@@ -167,7 +177,17 @@
     "appointmentBookedWith",
     "all",
     "pleaseLogin",
-    "selectReason"
+    "selectReason",
+    "doctorAvailabilityLabel",
+    "signupFieldRequired",
+    "doctorDetailsTitle",
+    "doctorSpecializationLabel",
+    "doctorExperienceLabel",
+    "doctorQualificationLabel",
+    "doctorConsultationFeeLabel",
+    "saveButton",
+    "profileUpdatedSuccess",
+    "profileUpdateFailed"
   ],
 
   "te": [
@@ -203,6 +223,16 @@
     "appointmentBookedWith",
     "all",
     "pleaseLogin",
-    "selectReason"
+    "selectReason",
+    "doctorAvailabilityLabel",
+    "signupFieldRequired",
+    "doctorDetailsTitle",
+    "doctorSpecializationLabel",
+    "doctorExperienceLabel",
+    "doctorQualificationLabel",
+    "doctorConsultationFeeLabel",
+    "saveButton",
+    "profileUpdatedSuccess",
+    "profileUpdateFailed"
   ]
 }

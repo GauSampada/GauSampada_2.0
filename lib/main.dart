@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gausampada/app/providers.dart';
 import 'package:gausampada/backend/providers/locale_provider.dart';
+import 'package:gausampada/backend/providers/user_provider.dart';
 import 'package:gausampada/firebase_options.dart';
 import 'package:gausampada/l10n/l10n.dart';
 import 'package:gausampada/screens/home/home_screen.dart';
@@ -55,35 +56,45 @@ class MyApp extends StatelessWidget {
               ],
               locale: Provider.of<LocaleProvider>(context).locale,
               supportedLocales: L10n.locales,
+              home: StreamBuilder<User?>(
+                stream: FirebaseAuth.instance.authStateChanges(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: themeColor,
+                      ),
+                    );
+                  }
 
-              home: StreamBuilder(
-                  stream: FirebaseAuth.instance.authStateChanges(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      //  await prefs.setString('user_id', user?.uid ?? "id----");
-                      return const HomeScreen();
-                    } else if (snapshot.hasError) {
-                      return const Center(
-                        child: Text("error will loading the data"),
-                      );
-                    }
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(
-                          color: themeColor,
-                        ),
-                      );
-                    }
+                  if (snapshot.hasError) {
+                    print("❌ Auth state error: ${snapshot.error}");
+                    return const Center(
+                      child: Text("Error loading authentication data"),
+                    );
+                  }
 
+                  final user = snapshot.data;
+                  final userProvider =
+                      Provider.of<UserProvider>(context, listen: false);
+
+                  if (user != null) {
+                    // Fetch user data if authenticated
+                    print("📥 Authenticated user detected: ${user.uid}");
+                    if (userProvider.isLoading) {
+                      userProvider.fetchUser();
+                    }
+                    return const HomeScreen(isLoginOrSignUp: false);
+                  } else {
+                    // Clear provider data if no user is logged in
+                    print("🧹 No authenticated user, clearing provider data");
+                    userProvider.clearUserData();
                     return const OnboardingMainScreen();
-                    // return const LoginScreen();
-                  }),
-              // home: const HomeScreen(),
-              // home: const OnboardingMainScreen(),
+                  }
+                },
+              ),
             );
           }),
     );
   }
 }
-
-/// For generating local files translations use "flutter gen-l10n"

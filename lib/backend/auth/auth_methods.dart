@@ -79,16 +79,18 @@ class AuthService {
   }
 
   // Signup with Google
-  Future<String> handleSignUpWithGoogle() async {
-    String res = "";
-    // UserType userType=UserType.user;
+  Future<Map<String, dynamic>> handleSignUpWithGoogle({
+    required UserType userType,
+  }) async {
     try {
+      print("📥 Starting Google Sign-In...");
       final GoogleSignIn googleSignIn = GoogleSignIn();
-      // await googleSignIn.signOut();
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       if (googleUser == null) {
-        return "Google sign-in aborted.";
+        print("⚠️ Google Sign-In aborted by user");
+        return {"res": "Google sign-in aborted.", "user": null};
       }
+
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
@@ -97,40 +99,61 @@ class AuthService {
       );
 
       final UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
+          await auth.signInWithCredential(credential);
       final User user = userCredential.user!;
+      print("✅ Google Sign-In successful for user: ${user.uid}");
 
-      final DocumentSnapshot userDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .get();
+      await prefs.setString('user_id', user.uid);
+
+      final DocumentSnapshot userDoc =
+          await firestore.collection('users').doc(user.uid).get();
+      UserModel data;
+
       if (!userDoc.exists) {
-        UserModel data = UserModel(
+        print("📝 Creating new user document in Firestore...");
+        data = UserModel(
           uid: user.uid,
           name: user.displayName ?? "Unknown",
           email: user.email ?? "No email",
           phonenumber: user.phoneNumber ?? "",
           photoURL: user.photoURL ?? "",
-          userType: UserType.user,
+          userType: userType,
+          location: '',
         );
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(user.uid)
-            .set(data.toMap());
+        await firestore.collection('users').doc(user.uid).set(data.toMap());
+        print("✅ New user document created");
       } else {
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(user.uid)
-            .update({
+        print("📖 Existing user found, updating last sign-in...");
+        data = UserModel.fromSnapshot(userDoc);
+        await firestore.collection('users').doc(user.uid).update({
           'lastSignIn': FieldValue.serverTimestamp(),
         });
       }
-      res = "success";
+
+      return {"res": "success", "user": data};
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      switch (e.code) {
+        case 'account-exists-with-different-credential':
+          errorMessage =
+              'An account already exists with a different sign-in method.';
+          break;
+        case 'invalid-credential':
+          errorMessage = 'Invalid Google credentials.';
+          break;
+        case 'operation-not-allowed':
+          errorMessage = 'Google sign-in is not enabled.';
+          break;
+        default:
+          errorMessage = 'Error signing in with Google: ${e.message}';
+      }
+      print('❌ FirebaseAuthException: $errorMessage');
+      return {"res": errorMessage, "user": null};
     } catch (e) {
-      res = "Error signing in with Google: ${e.toString()}";
-      print(res);
+      final errorMessage = "Error signing in with Google: ${e.toString()}";
+      print('❌ Unexpected Error: $errorMessage');
+      return {"res": errorMessage, "user": null};
     }
-    return res;
   }
 
   // Forgot Password
@@ -145,8 +168,45 @@ class AuthService {
     return res;
   }
 
+  // Save Doctor Details
+  Future<String> saveDoctorDetails({
+    required String uid,
+    required String specialization,
+    required int yearsOfExperience,
+    required List<String> availability,
+    required String qualification,
+    required int consultationFee,
+  }) async {
+    try {
+      final doctorDetails = {
+        'specialization': specialization,
+        'yearsOfExperience': yearsOfExperience,
+        'availability': availability,
+        'qualification': qualification,
+        'consultationFee': consultationFee,
+      };
+      await firestore.collection('users').doc(uid).update({
+        'doctorDetails': doctorDetails,
+      });
+      return "success";
+    } catch (e) {
+      return "Error saving doctor details: $e";
+    }
+  }
+
   // Logout
-  Future<void> logout() async {
-    await auth.signOut();
+  Future<String> logout() async {
+    try {
+      print("📴 Starting logout...");
+      await GoogleSignIn().signOut();
+      await auth.signOut();
+      await prefs.clear(); // Clear all SharedPreferences data
+      print("✅ Logout successful, all local data cleared");
+      return "success";
+    } catch (e) {
+      final errorMessage = "Error during logout: ${e.toString()}";
+      print('❌ Logout Error: $errorMessage');
+      return errorMessage;
+    }
   }
 }

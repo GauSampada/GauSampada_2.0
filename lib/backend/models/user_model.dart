@@ -9,14 +9,15 @@ class UserModel {
   final String? photoURL;
   final String? location;
   final UserType userType;
-  final Map<String, dynamic>? doctorDetails; // Added for doctor-specific fields
+  final Map<String, dynamic>? doctorDetails;
 
   UserModel({
     required this.uid,
     required this.name,
     required this.email,
     required this.phonenumber,
-    this.photoURL = "",
+    this.photoURL =
+        "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg?semt=ais_hybrid&w=740",
     this.location = "Bhimavaram",
     required this.userType,
     this.doctorDetails,
@@ -31,7 +32,7 @@ class UserModel {
       'photoURL': photoURL,
       'location': location,
       'userType': userType.name,
-      'doctorDetails': doctorDetails, // Include doctorDetails if present
+      'doctorDetails': doctorDetails,
     };
   }
 
@@ -50,15 +51,14 @@ class UserModel {
       photoURL: map['photoURL'] ?? '',
       location: map['location'] ?? '',
       userType: fromStringToEnum(map['userType'] as String),
-      doctorDetails:
-          map['doctorDetails'] as Map<String, dynamic>?, // Parse doctorDetails
+      doctorDetails: map['doctorDetails'] as Map<String, dynamic>?,
     );
   }
 
   static UserType fromStringToEnum(String userType) {
     return UserType.values.firstWhere(
       (type) => type.name.toLowerCase() == userType.toLowerCase(),
-      orElse: () => UserType.farmer, // Default to farmer if not found
+      orElse: () => UserType.farmer,
     );
   }
 }

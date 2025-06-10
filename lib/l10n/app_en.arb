@@ -560,5 +560,19 @@
   "appointmentBookedWith": "Appointment Booked With",
   "all": "All",
   "pleaseLogin": "Please Login",
-  "selectReason": "Select Reason"
+  "selectReason": "Select Reason",
+  "doctorAvailabilityLabel": "Availability",
+"signupFieldRequired": "This field is required",
+
+"doctorDetailsTitle": "Doctor Details",
+"doctorSpecializationLabel": "Specialization",
+"doctorExperienceLabel": "Years of Experience",
+"doctorQualificationLabel": "Qualification",
+"doctorConsultationFeeLabel": "Consultation Fee",
+"saveButton": "Save",
+"profileUpdatedSuccess" : "Profile Updated Successfully",
+"profileUpdateFailed" : "Profile Updated Failed"
+
+
+
 }
