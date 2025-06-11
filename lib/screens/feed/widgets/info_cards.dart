@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class InfoSubScreen extends StatelessWidget {
   final String title;
@@ -19,7 +18,6 @@ class InfoSubScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: onTap,
@@ -45,7 +43,7 @@ class InfoSubScreen extends StatelessWidget {
               SizedBox(
                   width: screenWidth * 0.4,
                   height: screenWidth * 0.4,
-                  child: Image.asset(address!))
+                  child: Image.asset(address))
             ],
           ),
         ),

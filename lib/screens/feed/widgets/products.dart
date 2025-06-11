@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gausampada/backend/providers/market_cart_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:gausampada/screens/market/market_screen.dart'; // Ensure CartProvider is accessible
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:gausampada/screens/market/market_screen.dart';
 
 class DairyProductsCardScreen extends StatefulWidget {
   const DairyProductsCardScreen({super.key});
@@ -11,64 +13,27 @@ class DairyProductsCardScreen extends StatefulWidget {
 }
 
 class _DairyProductsCardScreenState extends State<DairyProductsCardScreen> {
-  // Track liked items locally
-  final Set<int> _likedProducts = {};
+  final Set<String> _likedProducts = {};
 
-  // Dairy products list aligned with CartProvider structure
-  final List<Map<String, dynamic>> dairyProducts = [
-    {
-      'name': 'Cow Milk',
-      'price': 80,
-      'category': 'Milk & Dairy Products',
-      'image':
-          'https://img.freepik.com/premium-photo/dairy-products-cow-farm-selective-focus-food_73944-34183.jpg',
-      'quantity': '1 Litre',
-    },
-    {
-      'name': 'Fresh Paneer',
-      'price': 450,
-      'category': 'Milk & Dairy Products',
-      'image':
-          'https://img.freepik.com/premium-photo/paneer-cheese-cubes-plate-with-green-sauce-cilantro-table-generative-ai_118631-5899.jpg',
-      'quantity': '200g',
-    },
-    {
-      'name': 'Curd',
-      'price': 60,
-      'category': 'Milk & Dairy Products',
-      'image':
-          'https://img.freepik.com/premium-photo/plain-curd-yogurt-dahi-hindi-served-bowl-moody-background-selective-focus_466689-29254.jpg',
-      'quantity': '500g',
-    },
-    {
-      'name': 'Flavored Yogurt',
-      'price': 120,
-      'category': 'Milk & Dairy Products',
-      'image':
-          'https://img.freepik.com/free-photo/dovga-greens-dovga-inside-little-glass-along-with-crisps-grey-desk_140725-14591.jpg',
-      'quantity': '1 kg',
-    },
-  ];
-
-  void _toggleFavorite(int index) {
+  void _toggleFavorite(String productName) {
     setState(() {
-      if (_likedProducts.contains(index)) {
-        _likedProducts.remove(index);
+      if (_likedProducts.contains(productName)) {
+        _likedProducts.remove(productName);
       } else {
-        _likedProducts.add(index);
+        _likedProducts.add(productName);
       }
     });
   }
 
-  void _addToCart(int index, CartProvider cartProvider) {
-    cartProvider.addItem(dairyProducts[index]['name']);
-    // Show confirmation snackbar
+  void _addToCart(String productName, CartProvider cartProvider) {
+    cartProvider.addItem(productName);
+    final localizations = AppLocalizations.of(context)!;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('${dairyProducts[index]["name"]} added to cart'),
+        content: Text(localizations.addedToCart(productName)),
         duration: const Duration(seconds: 1),
         action: SnackBarAction(
-          label: 'VIEW CART',
+          label: localizations.viewCart,
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => const CartScreen()),
@@ -82,6 +47,9 @@ class _DairyProductsCardScreenState extends State<DairyProductsCardScreen> {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
+    final dairyProducts = cartProvider.allProducts
+        .where((product) => product['category'] == 'Milk & Dairy Products')
+        .toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +64,7 @@ class _DairyProductsCardScreenState extends State<DairyProductsCardScreen> {
             itemCount: dairyProducts.length,
             itemBuilder: (context, index) {
               final product = dairyProducts[index];
-              final bool isLiked = _likedProducts.contains(index);
+              final bool isLiked = _likedProducts.contains(product['name']);
               final int cartQuantity = cartProvider.cart[product['name']] ?? 0;
 
               return Container(
@@ -110,14 +78,14 @@ class _DairyProductsCardScreenState extends State<DairyProductsCardScreen> {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(16),
                     onTap: () {
-                      // Navigate to product detail page
+                      // Navigate to product detail page if needed
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(1.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Image container with badge
+                          // Image container
                           Stack(
                             children: [
                               ClipRRect(
@@ -131,14 +99,17 @@ class _DairyProductsCardScreenState extends State<DairyProductsCardScreen> {
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
-                                    child: Image.network(
-                                      product['image'],
-                                      fit: BoxFit.fitWidth,
-                                      errorBuilder:
-                                          (context, error, stackTrace) =>
-                                              const Icon(Icons.image,
-                                                  color: Colors.grey),
-                                    ),
+                                    child: product['image'] != null
+                                        ? Image.network(
+                                            product['image'],
+                                            fit: BoxFit.fitWidth,
+                                            errorBuilder:
+                                                (context, error, stackTrace) =>
+                                                    const Icon(Icons.error,
+                                                        color: Colors.grey),
+                                          )
+                                        : const Icon(Icons.image,
+                                            color: Colors.grey),
                                   ),
                                 ),
                               ),
@@ -151,7 +122,8 @@ class _DairyProductsCardScreenState extends State<DairyProductsCardScreen> {
                                   elevation: 2,
                                   shape: const CircleBorder(),
                                   child: InkWell(
-                                    onTap: () => _toggleFavorite(index),
+                                    onTap: () =>
+                                        _toggleFavorite(product['name']),
                                     customBorder: const CircleBorder(),
                                     child: Padding(
                                       padding: const EdgeInsets.all(6.0),
@@ -168,7 +140,7 @@ class _DairyProductsCardScreenState extends State<DairyProductsCardScreen> {
                                   ),
                                 ),
                               ),
-                              // Cart badge if items added
+                              // Cart badge
                               if (cartQuantity > 0)
                                 Positioned(
                                   top: 8,
@@ -215,7 +187,7 @@ class _DairyProductsCardScreenState extends State<DairyProductsCardScreen> {
                                       ),
                                       const SizedBox(height: 4),
                                       Text(
-                                        product['quantity'],
+                                        product['quantity'] ?? 'N/A',
                                         style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.grey[600],
@@ -223,7 +195,7 @@ class _DairyProductsCardScreenState extends State<DairyProductsCardScreen> {
                                       ),
                                     ],
                                   ),
-                                  // Price and add button row
+                                  // Price and add button
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -240,8 +212,8 @@ class _DairyProductsCardScreenState extends State<DairyProductsCardScreen> {
                                         color: const Color(0xFF4A6CFA),
                                         borderRadius: BorderRadius.circular(8),
                                         child: InkWell(
-                                          onTap: () =>
-                                              _addToCart(index, cartProvider),
+                                          onTap: () => _addToCart(
+                                              product['name'], cartProvider),
                                           borderRadius:
                                               BorderRadius.circular(8),
                                           child: const Padding(

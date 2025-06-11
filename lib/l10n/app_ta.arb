@@ -409,5 +409,40 @@
   "quantity": "அளவு (கிலோ)",
   "purchaseDate": "கொள்முதல் தேதி",
   "cancel": "ரத்து செய்யவும்",
-  "feedAddedFeedback": "தீவனம் இருப்பில் சேர்க்கப்பட்டது"
+  "feedAddedFeedback": "தீவனம் இருப்பில் சேர்க்கப்பட்டது",
+
+  
+  
+  "marketTitle": "பசு பொருட்கள் சந்தை",
+  "cartTitle": "உங்கள் கூடை",
+  "checkoutTitle": "செக்அவுட்",
+  "emptyCart": "உங்கள் கூடை காலியாக உள்ளது",
+  "total": "மொத்தம்",
+  "proceedToCheckout": "செக்அவுட்டிற்கு தொடரவும்",
+  "orderSummary": "ஆர்டர் சுருக்கம்",
+  "deliveryAddress": "விநியோக முகவரி",
+  "fullName": "முழு பெயர்",
+  "phoneNumber": "தொலைபேசி எண்",
+  "address": "முகவரி",
+  "paymentMethod": "கட்டண முறை",
+  "cashOnDelivery": "பணம் செலுத்துதல்",
+  "placeOrder": "ஆர்டர் செய்யவும்",
+  "orderPlaced": "ஆர்டர் வைக்கப்பட்டது",
+  "orderPlacedMessage": "உங்கள் ஆர்டர் வெற்றிகரமாக வைக்கப்பட்டது!",
+  "ok": "சரி",
+  "buyNow": "இப்போது வாங்கவும்",
+  "contactSeller": "விற்பனையாளரை தொடர்பு கொள்ளவும்",
+  "addedToCart": "{productName} கூடையில் சேர்க்கப்பட்டது",
+  "@addedToCart": {
+    "placeholders": {
+      "productName": {}
+    }
+  },
+  "viewCart": "கூடையைப் பார்க்கவும்",
+  "allCategory": "அனைத்தும்",
+  "milkDairyCategory": "பால் & பால் பொருட்கள்",
+  "dungCategory": "சாணம் (உரங்கள், உயிரிவளி முதலியவற்றிற்கு)",
+  "urineCategory": "சிறுநீர் (மருத்துவ/ஆயுர்வேத பயன்பாட்டிற்கு)",
+  "buyersCategory": "வாங்குபவர்கள்"
+
 }

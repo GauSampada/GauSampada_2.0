@@ -730,7 +730,41 @@
   "quantity": "పరిమాణం (కిలోలు)",
   "purchaseDate": "కొనుగోలు తేదీ",
   "cancel": "రద్దు చేయండి",
-  "feedAddedFeedback": "ఆహారం ఇన్వెంటరీకి జోడించబడింది"
+  "feedAddedFeedback": "ఆహారం ఇన్వెంటరీకి జోడించబడింది",
+
+
+  
+  "marketTitle": "గోవు ఉత్పత్తుల మార్కెట్",
+  "cartTitle": "మీ కార్ట్",
+  "checkoutTitle": "చెక్అవుట్",
+  "emptyCart": "మీ కార్ట్ ఖాళీగా ఉంది",
+  "total": "మొత్తం",
+  "proceedToCheckout": "చెక్అవుట్‌కు కొనసాగండి",
+  "orderSummary": "ఆర్డర్ సారాంశం",
+  "deliveryAddress": "డెలివరీ చిరునామా",
+  "fullName": "పూర్తి పేరు",
+  "phoneNumber": "ఫోన్ నంబర్",
+  "address": "చిరునామా",
+  "paymentMethod": "చెల్లింపు పద్ధతి",
+  "cashOnDelivery": "క్యాష్ ఆన్ డెలివరీ",
+  "placeOrder": "ఆర్డర్ చేయండి",
+  "orderPlaced": "ఆర్డర్ చేయబడింది",
+  "orderPlacedMessage": "మీ ఆర్డర్ విజయవంతంగా చేయబడింది!",
+  "ok": "సరే",
+  "buyNow": "ఇప్పుడు కొనండి",
+  "contactSeller": "విక్రేతను సంప్రదించండి",
+  "addedToCart": "{productName} కార్ట్‌కు జోడించబడింది",
+  "@addedToCart": {
+    "placeholders": {
+      "productName": {}
+    }
+  },
+  "viewCart": "కార్ట్‌ను చూడండి",
+  "allCategory": "అన్నీ",
+  "milkDairyCategory": "పాలు & పాడి ఉత్పత్తులు",
+  "dungCategory": "పేడ (ఎరువులు, బయోగ్యాస్ మొదలైనవి కోసం)",
+  "urineCategory": "మూత్రం (మెడిసినల్/ఆయుర్వేద ఉపయోగం కోసం)",
+  "buyersCategory": "కొనుగోలుదారులు"
 
 
 

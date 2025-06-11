@@ -573,7 +573,42 @@
   "quantity": "मात्रा (किग्रा)",
   "purchaseDate": "खरीद तारीख",
   "cancel": "रद्द करें",
-  "feedAddedFeedback": "चारा इन्वेंट्री में जोड़ा गया"
+  "feedAddedFeedback": "चारा इन्वेंट्री में जोड़ा गया",
+
+
+ 
+  "marketTitle": "गाय उत्पाद बाजार",
+  "cartTitle": "आपकी कार्ट",
+  "checkoutTitle": "चेकआउट",
+  "emptyCart": "आपकी कार्ट खाली है",
+  "total": "कुल",
+  "proceedToCheckout": "चेकआउट के लिए आगे बढ़ें",
+  "orderSummary": "आर्डर सारांश",
+  "deliveryAddress": "वितरण पता",
+  "fullName": "पूरा नाम",
+  "phoneNumber": "फोन नंबर",
+  "address": "पता",
+  "paymentMethod": "भुगतान विधि",
+  "cashOnDelivery": "कैश ऑन डिलीवरी",
+  "placeOrder": "आर्डर करें",
+  "orderPlaced": "आर्डर किया गया",
+  "orderPlacedMessage": "आपका आर्डर सफलतापूर्वक किया गया है!",
+  "ok": "ठीक है",
+  "buyNow": "अभी खरीदें",
+  "contactSeller": "विक्रेता से संपर्क करें",
+  "addedToCart": "{productName} कार्ट में जोड़ा गया",
+  "@addedToCart": {
+    "placeholders": {
+      "productName": {}
+    }
+  },
+  "viewCart": "कार्ट देखें",
+  "allCategory": "सभी",
+  "milkDairyCategory": "दूध और डेयरी उत्पाद",
+  "dungCategory": "गोबर (उर्वरक, बायोगैस आदि के लिए)",
+  "urineCategory": "मूत्र (औषधीय/आयुर्वेदिक उपयोग के लिए)",
+  "buyersCategory": "खरीदार"
+
 
 }
 
