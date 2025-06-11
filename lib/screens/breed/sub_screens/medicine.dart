@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MedicinesScreen extends StatefulWidget {
   const MedicinesScreen({super.key});
@@ -27,26 +28,31 @@ class _MedicinesScreenState extends State<MedicinesScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Medicines', style: TextStyle(color: Colors.white)),
+        title: Text(AppLocalizations.of(context)!.medicines,
+            style: const TextStyle(color: Colors.white)),
         backgroundColor: Colors.green[600],
+        iconTheme: const IconThemeData(color: Colors.white),
         bottom: TabBar(
           controller: _tabController,
           indicatorColor: Colors.white,
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white70,
-          tabs: const [
-            Tab(text: 'Preventive'),
-            Tab(text: 'Treatments'),
-            Tab(text: 'Ayurvedic'),
+          tabs: [
+            Tab(text: AppLocalizations.of(context)!.preventive),
+            Tab(text: AppLocalizations.of(context)!.treatments),
+            Tab(text: AppLocalizations.of(context)!.ayurvedic),
           ],
         ),
       ),
       body: TabBarView(
         controller: _tabController,
         children: [
-          _buildMedicineList('Preventive Medicines', preventiveMedicines),
-          _buildMedicineList('Treatment Medicines', treatmentMedicines),
-          _buildMedicineList('Ayurvedic Remedies', ayurvedicMedicines),
+          _buildMedicineList(AppLocalizations.of(context)!.preventiveMedicines,
+              _getPreventiveMedicines(context)),
+          _buildMedicineList(AppLocalizations.of(context)!.treatmentMedicines,
+              _getTreatmentMedicines(context)),
+          _buildMedicineList(AppLocalizations.of(context)!.ayurvedicRemedies,
+              _getAyurvedicMedicines(context)),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -108,8 +114,10 @@ class _MedicinesScreenState extends State<MedicinesScreen>
                   Text(medicine['purpose']!,
                       style: const TextStyle(color: Colors.grey)),
                   const SizedBox(height: 8),
-                  Text("💊 Dosage: ${medicine['dosage']}"),
-                  Text("📅 Frequency: ${medicine['frequency']}"),
+                  Text(
+                      "💊 ${AppLocalizations.of(context)!.dosage}: ${medicine['dosage']}"),
+                  Text(
+                      "📅 ${AppLocalizations.of(context)!.frequency}: ${medicine['frequency']}"),
                 ],
               ),
             ),
@@ -124,80 +132,88 @@ class _MedicinesScreenState extends State<MedicinesScreen>
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Set Medicine Reminder'),
-          content: const Text('Feature coming soon! Stay tuned.'),
+          title: Text(AppLocalizations.of(context)!.setMedicineReminder),
+          content: Text(AppLocalizations.of(context)!.featureComingSoon),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('OK'),
+              child: Text(AppLocalizations.of(context)!.ok),
             ),
           ],
         );
       },
     );
   }
+
+  // Medicine Data with localization
+  List<Map<String, String>> _getPreventiveMedicines(BuildContext context) {
+    return [
+      {
+        'name': AppLocalizations.of(context)!.fmdVaccine,
+        'purpose': AppLocalizations.of(context)!.fmdVaccinePurpose,
+        'dosage': AppLocalizations.of(context)!.fmdVaccineDosage,
+        'frequency': AppLocalizations.of(context)!.fmdVaccineFrequency
+      },
+      {
+        'name': AppLocalizations.of(context)!.dewormingSolution,
+        'purpose': AppLocalizations.of(context)!.dewormingSolutionPurpose,
+        'dosage': AppLocalizations.of(context)!.dewormingSolutionDosage,
+        'frequency': AppLocalizations.of(context)!.dewormingSolutionFrequency
+      },
+      {
+        'name': AppLocalizations.of(context)!.calciumSupplement,
+        'purpose': AppLocalizations.of(context)!.calciumSupplementPurpose,
+        'dosage': AppLocalizations.of(context)!.calciumSupplementDosage,
+        'frequency': AppLocalizations.of(context)!.calciumSupplementFrequency
+      },
+    ];
+  }
+
+  List<Map<String, String>> _getTreatmentMedicines(BuildContext context) {
+    return [
+      {
+        'name': AppLocalizations.of(context)!.antibioticInjection,
+        'purpose': AppLocalizations.of(context)!.antibioticInjectionPurpose,
+        'dosage': AppLocalizations.of(context)!.antibioticInjectionDosage,
+        'frequency': AppLocalizations.of(context)!.antibioticInjectionFrequency
+      },
+      {
+        'name': AppLocalizations.of(context)!.antiInflammatorySolution,
+        'purpose':
+            AppLocalizations.of(context)!.antiInflammatorySolutionPurpose,
+        'dosage': AppLocalizations.of(context)!.antiInflammatorySolutionDosage,
+        'frequency':
+            AppLocalizations.of(context)!.antiInflammatorySolutionFrequency
+      },
+      {
+        'name': AppLocalizations.of(context)!.electrolyteSolution,
+        'purpose': AppLocalizations.of(context)!.electrolyteSolutionPurpose,
+        'dosage': AppLocalizations.of(context)!.electrolyteSolutionDosage,
+        'frequency': AppLocalizations.of(context)!.electrolyteSolutionFrequency
+      },
+    ];
+  }
+
+  List<Map<String, String>> _getAyurvedicMedicines(BuildContext context) {
+    return [
+      {
+        'name': AppLocalizations.of(context)!.turmericPaste,
+        'purpose': AppLocalizations.of(context)!.turmericPastePurpose,
+        'dosage': AppLocalizations.of(context)!.turmericPasteDosage,
+        'frequency': AppLocalizations.of(context)!.turmericPasteFrequency
+      },
+      {
+        'name': AppLocalizations.of(context)!.neemOil,
+        'purpose': AppLocalizations.of(context)!.neemOilPurpose,
+        'dosage': AppLocalizations.of(context)!.neemOilDosage,
+        'frequency': AppLocalizations.of(context)!.neemOilFrequency
+      },
+      {
+        'name': AppLocalizations.of(context)!.triphalaPowder,
+        'purpose': AppLocalizations.of(context)!.triphalaPowderPurpose,
+        'dosage': AppLocalizations.of(context)!.triphalaPowderDosage,
+        'frequency': AppLocalizations.of(context)!.triphalaPowderFrequency
+      },
+    ];
+  }
 }
-
-// Medicine Data
-List<Map<String, String>> preventiveMedicines = [
-  {
-    'name': 'FMD Vaccine',
-    'purpose': 'Prevents Foot & Mouth Disease',
-    'dosage': '2ml subcutaneous',
-    'frequency': 'Every 6 months'
-  },
-  {
-    'name': 'Deworming Solution',
-    'purpose': 'Internal parasite control',
-    'dosage': '10ml per 100kg',
-    'frequency': 'Every 3 months'
-  },
-  {
-    'name': 'Calcium Supplement',
-    'purpose': 'Prevents milk fever',
-    'dosage': '50-100ml orally',
-    'frequency': 'Weekly for pregnant cows'
-  },
-];
-
-List<Map<String, String>> treatmentMedicines = [
-  {
-    'name': 'Antibiotic Injection',
-    'purpose': 'For bacterial infections',
-    'dosage': '1ml per 10kg',
-    'frequency': 'As prescribed by vet'
-  },
-  {
-    'name': 'Anti-inflammatory Solution',
-    'purpose': 'For pain relief',
-    'dosage': '2ml per 45kg',
-    'frequency': 'As needed for 3-5 days'
-  },
-  {
-    'name': 'Electrolyte Solution',
-    'purpose': 'For dehydration & diarrhea',
-    'dosage': '1-2 liters orally',
-    'frequency': 'As needed'
-  },
-];
-
-List<Map<String, String>> ayurvedicMedicines = [
-  {
-    'name': 'Turmeric Paste',
-    'purpose': 'For wound healing',
-    'dosage': 'Apply directly',
-    'frequency': 'Twice daily'
-  },
-  {
-    'name': 'Neem Oil',
-    'purpose': 'For skin conditions',
-    'dosage': 'Apply topically',
-    'frequency': 'Once daily for 7 days'
-  },
-  {
-    'name': 'Triphala Powder',
-    'purpose': 'For digestion',
-    'dosage': 'Mix 50g with feed',
-    'frequency': 'Daily for 15 days'
-  },
-];

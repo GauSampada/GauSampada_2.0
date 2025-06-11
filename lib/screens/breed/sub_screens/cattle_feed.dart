@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CattleFeedsScreen extends StatefulWidget {
   const CattleFeedsScreen({super.key});
@@ -9,10 +10,28 @@ class CattleFeedsScreen extends StatefulWidget {
 
 class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
   final List<Map<String, dynamic>> _feedTypes = [
-    {'name': 'Dry Fodder', 'icon': Icons.grass, 'isSelected': true},
-    {'name': 'Green Fodder', 'icon': Icons.eco, 'isSelected': false},
-    {'name': 'Concentrates', 'icon': Icons.grain, 'isSelected': false},
-    {'name': 'Minerals', 'icon': Icons.science, 'isSelected': false},
+    {
+      'name': (BuildContext context) => AppLocalizations.of(context)!.dryFodder,
+      'icon': Icons.grass,
+      'isSelected': true
+    },
+    {
+      'name': (BuildContext context) =>
+          AppLocalizations.of(context)!.greenFodder,
+      'icon': Icons.eco,
+      'isSelected': false
+    },
+    {
+      'name': (BuildContext context) =>
+          AppLocalizations.of(context)!.concentrates,
+      'icon': Icons.grain,
+      'isSelected': false
+    },
+    {
+      'name': (BuildContext context) => AppLocalizations.of(context)!.minerals,
+      'icon': Icons.science,
+      'isSelected': false
+    },
   ];
 
   int _selectedFeedIndex = 0;
@@ -21,12 +40,15 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            const Text('Cattle Feeds', style: TextStyle(color: Colors.white)),
+        title: Text(AppLocalizations.of(context)!.cattleFeeds,
+            style: const TextStyle(color: Colors.white)),
         backgroundColor: const Color(0xFF8BC34A),
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
-          IconButton(icon: const Icon(Icons.filter_list), onPressed: () {}),
+          IconButton(
+              icon: const Icon(Icons.filter_list),
+              onPressed: () {},
+              tooltip: AppLocalizations.of(context)!.filter),
         ],
       ),
       body: Column(
@@ -38,6 +60,7 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showAddFeedDialog(context),
         backgroundColor: const Color(0xFF8BC34A),
+        tooltip: AppLocalizations.of(context)!.addFeed,
         child: const Icon(Icons.add),
       ),
     );
@@ -88,7 +111,7 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    feed['name'],
+                    feed['name'](context),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: feed['isSelected']
@@ -128,32 +151,32 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildInfoCard(
-            'Dry Fodder',
-            'Essential for rumen function. Provides fiber and promotes cud chewing.',
+            AppLocalizations.of(context)!.dryFodder,
+            AppLocalizations.of(context)!.dryFodderDescription,
             Icons.info_outline,
           ),
           const SizedBox(height: 16),
-          _buildSectionHeader('Recommended Options'),
+          _buildSectionHeader(AppLocalizations.of(context)!.recommendedOptions),
           const SizedBox(height: 16),
           _buildFeedItemCard(
-            'Wheat Straw',
-            'Low nutrient but high fiber content',
-            'Feeding Rate: 2-3 kg per 100 kg body weight',
+            AppLocalizations.of(context)!.wheatStraw,
+            AppLocalizations.of(context)!.wheatStrawDescription,
+            AppLocalizations.of(context)!.wheatStrawFeedingRate,
           ),
           const SizedBox(height: 16),
           _buildFeedItemCard(
-            'Paddy Straw',
-            'Best when treated with urea',
-            'Feeding Rate: 2-3 kg per 100 kg body weight',
+            AppLocalizations.of(context)!.paddyStraw,
+            AppLocalizations.of(context)!.paddyStrawDescription,
+            AppLocalizations.of(context)!.paddyStrawFeedingRate,
           ),
           const SizedBox(height: 16),
           _buildFeedItemCard(
-            'Sorghum Hay',
-            'Higher nutrition than wheat straw',
-            'Feeding Rate: 1.5-2 kg per 100 kg body weight',
+            AppLocalizations.of(context)!.sorghumHay,
+            AppLocalizations.of(context)!.sorghumHayDescription,
+            AppLocalizations.of(context)!.sorghumHayFeedingRate,
           ),
           const SizedBox(height: 24),
-          _buildSectionHeader('Nutritional Values'),
+          _buildSectionHeader(AppLocalizations.of(context)!.nutritionalValues),
           const SizedBox(height: 16),
           _buildNutritionTable(),
           const SizedBox(height: 24),
@@ -170,32 +193,33 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildInfoCard(
-            'Green Fodder',
-            'Rich in nutrients, vitamins, and minerals. Improves milk production and health.',
+            AppLocalizations.of(context)!.greenFodder,
+            AppLocalizations.of(context)!.greenFodderDescription,
             Icons.info_outline,
           ),
           const SizedBox(height: 16),
-          _buildSectionHeader('Recommended Options'),
+          _buildSectionHeader(AppLocalizations.of(context)!.recommendedOptions),
           const SizedBox(height: 16),
           _buildFeedItemCard(
-            'Berseem',
-            'High protein green fodder',
-            'Feeding Rate: 15-20 kg per cow daily',
+            AppLocalizations.of(context)!.berseem,
+            AppLocalizations.of(context)!.berseemDescription,
+            AppLocalizations.of(context)!.berseemFeedingRate,
           ),
           const SizedBox(height: 16),
           _buildFeedItemCard(
-            'Hybrid Napier',
-            'High yielding perennial grass',
-            'Feeding Rate: 15-25 kg per cow daily',
+            AppLocalizations.of(context)!.hybridNapier,
+            AppLocalizations.of(context)!.hybridNapierDescription,
+            AppLocalizations.of(context)!.hybridNapierFeedingRate,
           ),
           const SizedBox(height: 16),
           _buildFeedItemCard(
-            'Lucerne (Alfalfa)',
-            'Excellent protein source',
-            'Feeding Rate: 10-15 kg per cow daily',
+            AppLocalizations.of(context)!.lucerne,
+            AppLocalizations.of(context)!.lucerneDescription,
+            AppLocalizations.of(context)!.lucerneFeedingRate,
           ),
           const SizedBox(height: 24),
-          _buildSectionHeader('Seasonal Availability'),
+          _buildSectionHeader(
+              AppLocalizations.of(context)!.seasonalAvailability),
           const SizedBox(height: 16),
           _buildSeasonalChart(),
         ],
@@ -210,26 +234,26 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildInfoCard(
-            'Concentrates',
-            'Energy-dense feeds that provide essential nutrients for milk production and growth.',
+            AppLocalizations.of(context)!.concentrates,
+            AppLocalizations.of(context)!.concentratesDescription,
             Icons.info_outline,
           ),
           const SizedBox(height: 16),
-          _buildSectionHeader('Commercial Options'),
+          _buildSectionHeader(AppLocalizations.of(context)!.commercialOptions),
           const SizedBox(height: 16),
           _buildFeedItemCard(
-            'Dairy Feed Mix (20% Protein)',
-            'Balanced feed for milking cows',
-            'Feeding Rate: 1 kg per 2.5-3 liters of milk produced',
+            AppLocalizations.of(context)!.dairyFeedMix,
+            AppLocalizations.of(context)!.dairyFeedMixDescription,
+            AppLocalizations.of(context)!.dairyFeedMixFeedingRate,
           ),
           const SizedBox(height: 16),
           _buildFeedItemCard(
-            'Calf Starter',
-            'Special formula for growing calves',
-            'Feeding Rate: 0.5-1.5 kg per day depending on age',
+            AppLocalizations.of(context)!.calfStarter,
+            AppLocalizations.of(context)!.calfStarterDescription,
+            AppLocalizations.of(context)!.calfStarterFeedingRate,
           ),
           const SizedBox(height: 24),
-          _buildSectionHeader('Home-Mixed Options'),
+          _buildSectionHeader(AppLocalizations.of(context)!.homeMixedOptions),
           const SizedBox(height: 16),
           _buildHomeMixedFeedCard(),
         ],
@@ -244,26 +268,27 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildInfoCard(
-            'Mineral Supplements',
-            'Essential for bone development, milk production, and overall health.',
+            AppLocalizations.of(context)!.minerals,
+            AppLocalizations.of(context)!.mineralsDescription,
             Icons.info_outline,
           ),
           const SizedBox(height: 16),
-          _buildSectionHeader('Recommended Options'),
+          _buildSectionHeader(AppLocalizations.of(context)!.recommendedOptions),
           const SizedBox(height: 16),
           _buildFeedItemCard(
-            'Mineral Mixture',
-            'Complete blend of macro and micro minerals',
-            'Feeding Rate: 50-100 grams per cow daily',
+            AppLocalizations.of(context)!.mineralMixture,
+            AppLocalizations.of(context)!.mineralMixtureDescription,
+            AppLocalizations.of(context)!.mineralMixtureFeedingRate,
           ),
           const SizedBox(height: 16),
           _buildFeedItemCard(
-            'Salt Blocks',
-            'For free-choice sodium intake',
-            'Place in feeding area for voluntary consumption',
+            AppLocalizations.of(context)!.saltBlocks,
+            AppLocalizations.of(context)!.saltBlocksDescription,
+            AppLocalizations.of(context)!.saltBlocksFeedingRate,
           ),
           const SizedBox(height: 24),
-          _buildSectionHeader('Mineral Deficiency Signs'),
+          _buildSectionHeader(
+              AppLocalizations.of(context)!.mineralDeficiencySigns),
           const SizedBox(height: 16),
           _buildMineralDeficiencyCard(),
         ],
@@ -386,38 +411,43 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
-                columns: const [
-                  DataColumn(label: Text('Feed Type')),
-                  DataColumn(label: Text('Protein %')),
-                  DataColumn(label: Text('TDN %')),
-                  DataColumn(label: Text('Fiber %')),
+                columns: [
+                  DataColumn(
+                      label: Text(AppLocalizations.of(context)!.feedType)),
+                  DataColumn(
+                      label:
+                          Text(AppLocalizations.of(context)!.proteinPercent)),
+                  DataColumn(
+                      label: Text(AppLocalizations.of(context)!.tdnPercent)),
+                  DataColumn(
+                      label: Text(AppLocalizations.of(context)!.fiberPercent)),
                 ],
-                rows: const [
+                rows: [
                   DataRow(cells: [
-                    DataCell(Text('Wheat Straw')),
-                    DataCell(Text('3-4')),
-                    DataCell(Text('40-45')),
-                    DataCell(Text('35-40')),
+                    DataCell(Text(AppLocalizations.of(context)!.wheatStraw)),
+                    const DataCell(Text('3-4')),
+                    const DataCell(Text('40-45')),
+                    const DataCell(Text('35-40')),
                   ]),
                   DataRow(cells: [
-                    DataCell(Text('Paddy Straw')),
-                    DataCell(Text('2-3')),
-                    DataCell(Text('35-40')),
-                    DataCell(Text('40-45')),
+                    DataCell(Text(AppLocalizations.of(context)!.paddyStraw)),
+                    const DataCell(Text('2-3')),
+                    const DataCell(Text('35-40')),
+                    const DataCell(Text('40-45')),
                   ]),
                   DataRow(cells: [
-                    DataCell(Text('Sorghum Hay')),
-                    DataCell(Text('5-7')),
-                    DataCell(Text('50-55')),
-                    DataCell(Text('30-35')),
+                    DataCell(Text(AppLocalizations.of(context)!.sorghumHay)),
+                    const DataCell(Text('5-7')),
+                    const DataCell(Text('50-55')),
+                    const DataCell(Text('30-35')),
                   ]),
                 ],
               ),
             ),
             const SizedBox(height: 12),
-            const Text(
-              'TDN: Total Digestible Nutrients',
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)!.tdnExplanation,
+              style: const TextStyle(
                   fontStyle: FontStyle.italic,
                   fontSize: 12,
                   color: Colors.grey),
@@ -437,13 +467,13 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
+            Row(
               children: [
-                Icon(Icons.storage, color: Color(0xFF8BC34A)),
-                SizedBox(width: 8),
+                const Icon(Icons.storage, color: Color(0xFF8BC34A)),
+                const SizedBox(width: 8),
                 Text(
-                  'Storage Tips',
-                  style: TextStyle(
+                  AppLocalizations.of(context)!.storageTips,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF33691E),
@@ -452,11 +482,13 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
               ],
             ),
             const SizedBox(height: 12),
-            _buildStorageTip('Store in a dry, well-ventilated area'),
-            _buildStorageTip('Keep away from moisture to prevent mold'),
+            _buildStorageTip(AppLocalizations.of(context)!.storageTipDryArea),
             _buildStorageTip(
-                'Stack on wooden platforms, not directly on the ground'),
-            _buildStorageTip('Ensure protection from rain and pests'),
+                AppLocalizations.of(context)!.storageTipNoMoisture),
+            _buildStorageTip(
+                AppLocalizations.of(context)!.storageTipWoodenPlatform),
+            _buildStorageTip(
+                AppLocalizations.of(context)!.storageTipProtectFromRain),
           ],
         ),
       ),
@@ -490,43 +522,47 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
-                columns: const [
-                  DataColumn(label: Text('Fodder')),
-                  DataColumn(label: Text('Winter')),
-                  DataColumn(label: Text('Summer')),
-                  DataColumn(label: Text('Rainy')),
+                columns: [
+                  DataColumn(label: Text(AppLocalizations.of(context)!.fodder)),
+                  DataColumn(label: Text(AppLocalizations.of(context)!.winter)),
+                  DataColumn(label: Text(AppLocalizations.of(context)!.summer)),
+                  DataColumn(label: Text(AppLocalizations.of(context)!.rainy)),
                 ],
-                rows: const [
+                rows: [
                   DataRow(cells: [
-                    DataCell(Text('Berseem')),
-                    DataCell(Icon(Icons.check_circle,
+                    DataCell(Text(AppLocalizations.of(context)!.berseem)),
+                    const DataCell(Icon(Icons.check_circle,
                         color: Colors.green, size: 20)),
-                    DataCell(Icon(Icons.cancel, color: Colors.red, size: 20)),
-                    DataCell(Icon(Icons.cancel, color: Colors.red, size: 20)),
+                    const DataCell(
+                        Icon(Icons.cancel, color: Colors.red, size: 20)),
+                    const DataCell(
+                        Icon(Icons.cancel, color: Colors.red, size: 20)),
                   ]),
                   DataRow(cells: [
-                    DataCell(Text('Hybrid Napier')),
-                    DataCell(Icon(Icons.check_circle,
+                    DataCell(Text(AppLocalizations.of(context)!.hybridNapier)),
+                    const DataCell(Icon(Icons.check_circle,
                         color: Colors.green, size: 20)),
-                    DataCell(Icon(Icons.check_circle,
+                    const DataCell(Icon(Icons.check_circle,
                         color: Colors.green, size: 20)),
-                    DataCell(Icon(Icons.check_circle,
+                    const DataCell(Icon(Icons.check_circle,
                         color: Colors.green, size: 20)),
                   ]),
                   DataRow(cells: [
-                    DataCell(Text('Lucerne')),
-                    DataCell(Icon(Icons.check_circle,
+                    DataCell(Text(AppLocalizations.of(context)!.lucerne)),
+                    const DataCell(Icon(Icons.check_circle,
                         color: Colors.green, size: 20)),
-                    DataCell(Icon(Icons.check_circle,
+                    const DataCell(Icon(Icons.check_circle,
                         color: Colors.green, size: 20)),
-                    DataCell(Icon(Icons.cancel, color: Colors.red, size: 20)),
+                    const DataCell(
+                        Icon(Icons.cancel, color: Colors.red, size: 20)),
                   ]),
                   DataRow(cells: [
-                    DataCell(Text('Maize')),
-                    DataCell(Icon(Icons.check_circle,
+                    DataCell(Text(AppLocalizations.of(context)!.maize)),
+                    const DataCell(Icon(Icons.check_circle,
                         color: Colors.green, size: 20)),
-                    DataCell(Icon(Icons.cancel, color: Colors.red, size: 20)),
-                    DataCell(Icon(Icons.check_circle,
+                    const DataCell(
+                        Icon(Icons.cancel, color: Colors.red, size: 20)),
+                    const DataCell(Icon(Icons.check_circle,
                         color: Colors.green, size: 20)),
                   ]),
                 ],
@@ -547,21 +583,27 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Sample Home Mix (30 kg batch)',
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)!.sampleHomeMix,
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Color(0xFF33691E),
               ),
             ),
             const SizedBox(height: 16),
-            _buildIngredientItem('Maize', '12 kg (40%)'),
-            _buildIngredientItem('Soybean meal', '9 kg (30%)'),
-            _buildIngredientItem('Wheat bran', '6 kg (20%)'),
-            _buildIngredientItem('Rice polish', '2.4 kg (8%)'),
-            _buildIngredientItem('Mineral mixture', '0.3 kg (1%)'),
-            _buildIngredientItem('Salt', '0.3 kg (1%)'),
+            _buildIngredientItem(
+                AppLocalizations.of(context)!.maize, '12 kg (40%)'),
+            _buildIngredientItem(
+                AppLocalizations.of(context)!.soybeanMeal, '9 kg (30%)'),
+            _buildIngredientItem(
+                AppLocalizations.of(context)!.wheatBran, '6 kg (20%)'),
+            _buildIngredientItem(
+                AppLocalizations.of(context)!.ricePolish, '2.4 kg (8%)'),
+            _buildIngredientItem(
+                AppLocalizations.of(context)!.mineralMixture, '0.3 kg (1%)'),
+            _buildIngredientItem(
+                AppLocalizations.of(context)!.salt, '0.3 kg (1%)'),
             const SizedBox(height: 16),
             Container(
               width: double.infinity,
@@ -571,15 +613,15 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: const Color(0xFFAED581)),
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Nutritional Value (Approximate):',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  SizedBox(height: 8),
-                  Text('Crude Protein: 18-20%'),
-                  Text('TDN: 70-75%'),
-                  Text('Cost: Lower than commercial feeds'),
+                  Text(AppLocalizations.of(context)!.nutritionalValue,
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 8),
+                  Text(AppLocalizations.of(context)!.crudeProtein),
+                  Text(AppLocalizations.of(context)!.tdnValue),
+                  Text(AppLocalizations.of(context)!.cost),
                 ],
               ),
             ),
@@ -614,22 +656,24 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildDeficiencyItem('Calcium',
-                'Milk fever, weak bones, poor growth', Colors.red.shade100),
+            _buildDeficiencyItem(
+                AppLocalizations.of(context)!.calcium,
+                AppLocalizations.of(context)!.calciumDeficiencySymptoms,
+                Colors.red.shade100),
             const Divider(),
             _buildDeficiencyItem(
-                'Phosphorus',
-                'Poor fertility, weak bones, reduced appetite',
+                AppLocalizations.of(context)!.phosphorus,
+                AppLocalizations.of(context)!.phosphorusDeficiencySymptoms,
                 Colors.orange.shade100),
             const Divider(),
             _buildDeficiencyItem(
-                'Copper',
-                'Anemia, poor growth, coat discoloration',
+                AppLocalizations.of(context)!.copper,
+                AppLocalizations.of(context)!.copperDeficiencySymptoms,
                 Colors.yellow.shade100),
             const Divider(),
             _buildDeficiencyItem(
-                'Iodine',
-                'Goiter, reproductive problems, weak calves',
+                AppLocalizations.of(context)!.iodine,
+                AppLocalizations.of(context)!.iodineDeficiencySymptoms,
                 Colors.green.shade100),
           ],
         ),
@@ -670,46 +714,53 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Add Feed to Inventory'),
+        title: Text(AppLocalizations.of(context)!.addFeedToInventory),
         content: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
-                  labelText: 'Feed Name',
-                  border: OutlineInputBorder(),
+                  labelText: AppLocalizations.of(context)!.feedName,
+                  border: const OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                decoration: const InputDecoration(
-                  labelText: 'Feed Type',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.feedType,
+                  border: const OutlineInputBorder(),
                 ),
-                items: const [
-                  DropdownMenuItem(value: 'dry', child: Text('Dry Fodder')),
-                  DropdownMenuItem(value: 'green', child: Text('Green Fodder')),
+                items: [
                   DropdownMenuItem(
-                      value: 'concentrate', child: Text('Concentrate')),
-                  DropdownMenuItem(value: 'mineral', child: Text('Mineral')),
+                      value: 'dry',
+                      child: Text(AppLocalizations.of(context)!.dryFodder)),
+                  DropdownMenuItem(
+                      value: 'green',
+                      child: Text(AppLocalizations.of(context)!.greenFodder)),
+                  DropdownMenuItem(
+                      value: 'concentrate',
+                      child: Text(AppLocalizations.of(context)!.concentrates)),
+                  DropdownMenuItem(
+                      value: 'mineral',
+                      child: Text(AppLocalizations.of(context)!.minerals)),
                 ],
                 onChanged: (value) {},
               ),
               const SizedBox(height: 16),
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
-                  labelText: 'Quantity (kg)',
-                  border: OutlineInputBorder(),
+                  labelText: AppLocalizations.of(context)!.quantity,
+                  border: const OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
               ),
               const SizedBox(height: 16),
               TextField(
-                decoration: const InputDecoration(
-                  labelText: 'Purchase Date',
-                  border: OutlineInputBorder(),
-                  suffixIcon: Icon(Icons.calendar_today),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.purchaseDate,
+                  border: const OutlineInputBorder(),
+                  suffixIcon: const Icon(Icons.calendar_today),
                 ),
                 readOnly: true,
                 onTap: () async {
@@ -730,20 +781,22 @@ class _CattleFeedsScreenState extends State<CattleFeedsScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context)!.cancel),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Feed added to inventory')),
+                SnackBar(
+                    content:
+                        Text(AppLocalizations.of(context)!.feedAddedFeedback)),
               );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF8BC34A),
               foregroundColor: Colors.white,
             ),
-            child: const Text('Add Feed'),
+            child: Text(AppLocalizations.of(context)!.addFeed),
           ),
         ],
       ),
