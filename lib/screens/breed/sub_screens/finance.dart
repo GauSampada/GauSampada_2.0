@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FinanceScreen extends StatelessWidget {
   const FinanceScreen({super.key});
@@ -7,7 +8,8 @@ class FinanceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Finance', style: TextStyle(color: Colors.white)),
+        title: Text(AppLocalizations.of(context)!.finance,
+            style: const TextStyle(color: Colors.white)),
         backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
@@ -15,21 +17,31 @@ class FinanceScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSectionHeader('Available Loan Schemes'),
+            _buildSectionHeader(
+                AppLocalizations.of(context)!.availableLoanSchemes),
             _buildLoanCard(
-                'Dairy Entrepreneurship Development Scheme (DEDS)',
-                'Interest Rate: 4.5% p.a.\nLoan Amount: ₹50,000 - ₹5,00,000',
-                'PNB'),
+              AppLocalizations.of(context)!.dairyEntrepreneurshipSchemeName,
+              AppLocalizations.of(context)!
+                  .dairyEntrepreneurshipSchemeDescription,
+              AppLocalizations.of(context)!.dairyEntrepreneurshipSchemeBank,
+            ),
             _buildLoanCard(
-                'Pashu Kisan Credit Card (PKCC)',
-                'Interest Rate: 7% p.a.\nLoan Amount: Up to ₹1,60,000 - ₹72,000',
-                'SBI'),
-            _buildLoanCard('Rashtriya Gokul Mission (RGM) Loan',
-                'Interest Rate: 6% p.a.\nLoan Amount: Up to ₹3,00,000', 'HDFC'),
+              AppLocalizations.of(context)!.pashuKisanCreditCardName,
+              AppLocalizations.of(context)!.pashuKisanCreditCardDescription,
+              AppLocalizations.of(context)!.pashuKisanCreditCardBank,
+            ),
             _buildLoanCard(
-                'National Livestock Mission (NLM) Loan',
-                'Interest Rate: 5% p.a.\nLoan Amount: ₹1,00,000 - ₹10,00,000',
-                'AXIS'),
+              AppLocalizations.of(context)!.rashtriyaGokulMissionLoanName,
+              AppLocalizations.of(context)!
+                  .rashtriyaGokulMissionLoanDescription,
+              AppLocalizations.of(context)!.rashtriyaGokulMissionLoanBank,
+            ),
+            _buildLoanCard(
+              AppLocalizations.of(context)!.nationalLivestockMissionLoanName,
+              AppLocalizations.of(context)!
+                  .nationalLivestockMissionLoanDescription,
+              AppLocalizations.of(context)!.nationalLivestockMissionLoanBank,
+            ),
           ],
         ),
       ),

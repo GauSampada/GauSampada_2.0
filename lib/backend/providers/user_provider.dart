@@ -15,27 +15,42 @@ class UserProvider extends ChangeNotifier {
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
-  Future<void> fetchUser() async {
-    try {
-      print(uid);
-      print("📥 Fetching user data...");
-      var snap = await _firestore.collection('users').doc(uid).get();
-      _user = UserModel.fromSnapshot(snap);
-      print(user);
-      //print("✅ User data fetched successfully!");
-    } catch (e) {
-      //print("❌ Error fetching user data: $e");
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
   File? _profileImage;
   File? get profileImage => _profileImage;
 
   String? _photoURL;
   String? get photoURL => _photoURL;
+
+  Future<void> fetchUser() async {
+    final uid = FirebaseAuth.instance.currentUser?.uid ?? "";
+    if (uid.isEmpty) {
+      print("⚠️ No user ID available, skipping fetch");
+      _user = null;
+      _isLoading = false;
+      notifyListeners();
+      return;
+    }
+
+    try {
+      print("📥 Fetching user data for UID: $uid");
+      final snap = await _firestore.collection('users').doc(uid).get();
+      if (snap.exists) {
+        _user = UserModel.fromSnapshot(snap);
+        _photoURL = _user?.photoURL;
+        print(
+            "✅ User data fetched: ${_user?.name}, ${_user?.email}, ${_user?.userType}, ${_user?.photoURL}");
+      } else {
+        print("⚠️ No user document found for UID: $uid");
+        _user = null;
+      }
+    } catch (e) {
+      print("❌ Error fetching user data: $e");
+      _user = null;
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
 
   Future<void> selectImage(ImageSource source) async {
     _isLoading = true;
@@ -66,7 +81,11 @@ class UserProvider extends ChangeNotifier {
 
       if (imageUrl != null && imageUrl.isNotEmpty) {
         _photoURL = imageUrl;
-        notifyListeners();
+        await _firestore.collection('users').doc(uid).update({
+          'photoURL': imageUrl,
+        });
+        await fetchUser();
+        //print("✅ Photo URL updated in Firestore");
       }
     } catch (e) {
       //print("❌ Error uploading image: $e");
@@ -82,18 +101,21 @@ class UserProvider extends ChangeNotifier {
     required String phonenumber,
     required String location,
     required UserType userType,
+    Map<String, dynamic>? doctorDetails,
   }) async {
     String res = '';
 
     try {
       final updatedUser = UserModel(
-          uid: uid,
-          name: name,
-          email: email,
-          phonenumber: phonenumber,
-          photoURL: "",
-          location: location,
-          userType: userType);
+        uid: uid,
+        name: name,
+        email: email,
+        phonenumber: phonenumber,
+        photoURL: _photoURL ?? user.photoURL ?? "",
+        location: location,
+        userType: userType,
+        doctorDetails: doctorDetails,
+      );
 
       _isUpdate = true;
       notifyListeners();
@@ -109,39 +131,21 @@ class UserProvider extends ChangeNotifier {
     } catch (error) {
       res = error.toString();
       //print("❌ Error updating user details: $error");
+      _isUpdate = false;
+      notifyListeners();
       throw Exception(error.toString());
     }
 
     return res;
   }
 
-  // List<Map<String, dynamic>> myBookings = [
-  //   {
-  //     "bookingId": "B12345",
-  //     "date": "2025-02-22",
-  //     "service": "Veterinary Checkup",
-  //     "status": "Confirmed",
-  //     "farmerName": "Ramesh Kumar",
-  //     "animalType": "Cow",
-  //     "issueType": "Fever"
-  //   },
-  //   {
-  //     "bookingId": "B12346",
-  //     "date": "2025-02-25",
-  //     "service": "Artificial Insemination",
-  //     "status": "Pending",
-  //     "farmerName": "Suresh Patil",
-  //     "animalType": "Buffalo",
-  //     "issueType": "Breeding"
-  //   },
-  //   {
-  //     "bookingId": "B12347",
-  //     "date": "2025-02-28",
-  //     "service": "Deworming",
-  //     "status": "Completed",
-  //     "farmerName": "Anita Sharma",
-  //     "animalType": "Goat",
-  //     "issueType": "Parasitic Infection"
-  //   }
-  // ];
+  void clearUserData() {
+    _user = null;
+    _photoURL = null;
+    _profileImage = null;
+    _isLoading = true;
+    _isUpdate = false;
+    print("🧹 Cleared cached user data");
+    notifyListeners();
+  }
 }

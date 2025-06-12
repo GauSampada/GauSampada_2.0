@@ -1,15 +1,21 @@
 import 'package:delightful_toast/toast/utils/enums.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gausampada/backend/auth/auth_methods.dart';
+import 'package:gausampada/backend/enums/user_type.dart';
+import 'package:gausampada/backend/models/user_model.dart';
+import 'package:gausampada/backend/providers/user_provider.dart';
 import 'package:gausampada/const/colors.dart';
 import 'package:gausampada/const/toast.dart';
 import 'package:gausampada/screens/auth/forgot_password.dart';
 import 'package:gausampada/screens/auth/signup.dart';
-import 'package:gausampada/screens/auth/userTyoeSelection.dart';
+import 'package:gausampada/screens/auth/userTypeSelection.dart';
 import 'package:gausampada/screens/auth/widgets/custom_auth_buttons.dart';
 import 'package:gausampada/screens/auth/widgets/customtextformfield.dart';
+import 'package:gausampada/screens/communication/widgets/doctor_details_screen.dart';
 import 'package:gausampada/screens/home/home_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -72,41 +78,80 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> loginWithGoogle() async {
+    if (!mounted) return;
     setState(() {
       isgoogleLoading = true;
     });
-    try {
-      String res = await authService.handleSignUpWithGoogle();
 
-      if (res == "success") {
+    try {
+      final result =
+          await authService.handleSignUpWithGoogle(userType: UserType.user);
+      final String res = result['res'];
+      final UserModel? user = result['user'];
+
+      if (!mounted) return;
+
+      if (res == "success" && user != null) {
+        await Provider.of<UserProvider>(context, listen: false).fetchUser();
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(isLoginOrSignUp: true),
+          ),
         );
       } else {
         toastMessage(
-            context: context,
-            message: res,
-            leadingIcon: const Icon(Icons.error),
-            toastColor: Colors.red[200],
-            borderColor: Colors.red,
-            position: DelightSnackbarPosition.top);
-      }
-    } catch (e) {
-      toastMessage(
           context: context,
-          message: e.toString(),
+          message: res,
           leadingIcon: const Icon(Icons.error),
           toastColor: Colors.red[200],
           borderColor: Colors.red,
-          position: DelightSnackbarPosition.top);
+          position: DelightSnackbarPosition.top,
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      if (!mounted) return;
+      String errorMessage;
+      switch (e.code) {
+        case 'account-exists-with-different-credential':
+          errorMessage =
+              'An account already exists with a different sign-in method.';
+          break;
+        case 'invalid-credential':
+          errorMessage = 'Invalid Google credentials.';
+          break;
+        case 'operation-not-allowed':
+          errorMessage = 'Google sign-in is not enabled.';
+          break;
+        default:
+          errorMessage = 'Error signing in with Google: ${e.message}';
+      }
+      print('❌ Google Sign-In Error: $errorMessage');
+      toastMessage(
+        context: context,
+        message: errorMessage,
+        leadingIcon: const Icon(Icons.error),
+        toastColor: Colors.red[200],
+        borderColor: Colors.red,
+        position: DelightSnackbarPosition.top,
+      );
+    } catch (e) {
+      if (!mounted) return;
+      print('❌ Unexpected Error: $e');
+      toastMessage(
+        context: context,
+        message: 'An unexpected error occurred: $e',
+        leadingIcon: const Icon(Icons.error),
+        toastColor: Colors.red[200],
+        borderColor: Colors.red,
+        position: DelightSnackbarPosition.top,
+      );
     } finally {
-      setState(() {
-        isgoogleLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          isgoogleLoading = false;
+        });
+      }
     }
-    setState(() {
-      isgoogleLoading = false;
-    });
   }
 
   @override

@@ -3,10 +3,10 @@ import 'package:gausampada/backend/providers/ai_provider.dart';
 import 'package:gausampada/backend/providers/appoinment_chat_provider.dart';
 import 'package:gausampada/backend/providers/booking_provider.dart';
 import 'package:gausampada/backend/providers/locale_provider.dart';
+import 'package:gausampada/backend/providers/market_cart_provider.dart';
 import 'package:gausampada/backend/providers/user_provider.dart';
 import 'package:gausampada/const/image_picker_.dart';
 import 'package:gausampada/screens/chat_bot/ai_assistance.dart';
-import 'package:gausampada/screens/market/market_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 

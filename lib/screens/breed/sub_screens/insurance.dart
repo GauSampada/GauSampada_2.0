@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class InsuranceScreen extends StatelessWidget {
   const InsuranceScreen({super.key});
@@ -7,7 +8,8 @@ class InsuranceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Insurance', style: TextStyle(color: Colors.white)),
+        title: Text(AppLocalizations.of(context)!.insurance,
+            style: const TextStyle(color: Colors.white)),
         backgroundColor: Colors.green,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
@@ -16,21 +18,29 @@ class InsuranceScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildInfoBox(),
+            _buildInfoBox(context),
             const SizedBox(height: 16),
-            _buildSectionHeader('Available Insurance Plans'),
-            _buildInsuranceCard('Basic Cattle Insurance',
-                'Coverage for natural death, accidents, and diseases'),
-            _buildInsuranceCard('Premium Protection Plan',
-                'Includes theft, pregnancy complications'),
-            _buildInsuranceCard('Indigenous Breed Special',
-                'Special coverage for indigenous breeds'),
+            _buildSectionHeader(
+                AppLocalizations.of(context)!.availableInsurancePlans),
+            _buildInsuranceCard(
+              AppLocalizations.of(context)!.basicCattleInsuranceName,
+              AppLocalizations.of(context)!.basicCattleInsuranceCoverage,
+            ),
+            _buildInsuranceCard(
+              AppLocalizations.of(context)!.premiumProtectionPlanName,
+              AppLocalizations.of(context)!.premiumProtectionPlanCoverage,
+            ),
+            _buildInsuranceCard(
+              AppLocalizations.of(context)!.indigenousBreedSpecialName,
+              AppLocalizations.of(context)!.indigenousBreedSpecialCoverage,
+            ),
             const SizedBox(height: 16),
-            _buildSectionHeader('Claim Process'),
-            _buildStepCard(),
+            _buildSectionHeader(AppLocalizations.of(context)!.claimProcess),
+            _buildStepCard(context),
             const SizedBox(height: 16),
-            _buildSectionHeader('Required Documents'),
-            _buildDocumentList(),
+            _buildSectionHeader(
+                AppLocalizations.of(context)!.requiredDocuments),
+            _buildDocumentList(context),
           ],
         ),
       ),
@@ -48,19 +58,18 @@ class InsuranceScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoBox() {
+  Widget _buildInfoBox(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
           color: Colors.green[100], borderRadius: BorderRadius.circular(12)),
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Why Insure Your Cattle?',
-              style: TextStyle(fontWeight: FontWeight.bold)),
-          SizedBox(height: 8),
-          Text(
-              'Protect against risks like diseases, accidents, and calamities. Government subsidies available.'),
+          Text(AppLocalizations.of(context)!.whyInsureCattle,
+              style: const TextStyle(fontWeight: FontWeight.bold)),
+          const SizedBox(height: 8),
+          Text(AppLocalizations.of(context)!.whyInsureCattleDescription),
         ],
       ),
     );
@@ -79,16 +88,20 @@ class InsuranceScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStepCard() {
+  Widget _buildStepCard(BuildContext context) {
     return Card(
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Column(
         children: [
-          _buildStep(1, 'Report Incident', 'Inform within 24 hours'),
-          _buildStep(2, 'Veterinary Check', 'Get an examination report'),
-          _buildStep(3, 'Submit Documents', 'Submit all required documents'),
-          _buildStep(4, 'Claim Processing', 'Processed within 15-30 days'),
+          _buildStep(1, AppLocalizations.of(context)!.reportIncident,
+              AppLocalizations.of(context)!.reportIncidentDescription),
+          _buildStep(2, AppLocalizations.of(context)!.veterinaryCheck,
+              AppLocalizations.of(context)!.veterinaryCheckDescription),
+          _buildStep(3, AppLocalizations.of(context)!.submitDocuments,
+              AppLocalizations.of(context)!.submitDocumentsDescription),
+          _buildStep(4, AppLocalizations.of(context)!.claimProcessing,
+              AppLocalizations.of(context)!.claimProcessingDescription),
         ],
       ),
     );
@@ -106,14 +119,14 @@ class InsuranceScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDocumentList() {
+  Widget _buildDocumentList(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildDocumentItem('Cattle ownership proof'),
-        _buildDocumentItem('Cattle identification (ear tag number)'),
-        _buildDocumentItem('Health certificate from vet'),
-        _buildDocumentItem('Bank account details'),
+        _buildDocumentItem(AppLocalizations.of(context)!.cattleOwnershipProof),
+        _buildDocumentItem(AppLocalizations.of(context)!.cattleIdentification),
+        _buildDocumentItem(AppLocalizations.of(context)!.healthCertificate),
+        _buildDocumentItem(AppLocalizations.of(context)!.bankAccountDetails),
       ],
     );
   }

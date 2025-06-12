@@ -1,9 +1,12 @@
 import 'package:delightful_toast/toast/utils/enums.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gausampada/backend/enums/user_type.dart';
+import 'package:gausampada/backend/models/user_model.dart';
 import 'package:gausampada/const/colors.dart';
 import 'package:gausampada/const/toast.dart';
+import 'package:gausampada/screens/auth/doctor_details_form.dart';
 import 'package:gausampada/screens/auth/login.dart';
 import 'package:gausampada/screens/auth/widgets/custom_auth_buttons.dart';
 import 'package:gausampada/screens/auth/widgets/customtextformfield.dart';
@@ -29,7 +32,7 @@ class SignupScreenState extends State<SignupScreen> {
 
   bool obscureText = true;
   bool isLoading = false;
-  bool isgoogleLoading = false;
+  bool isGoogleLoading = false;
 
   @override
   void dispose() {
@@ -66,12 +69,27 @@ class SignupScreenState extends State<SignupScreen> {
       );
 
       if (res == "success") {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-              builder: (context) => const HomeScreen(
-                    isLoginOrSignUp: true,
-                  )),
+        final user = UserModel(
+          uid: authService.auth.currentUser!.uid,
+          name: name.text.trim(),
+          email: email.text.trim(),
+          phonenumber: phonenum.text.trim(),
+          userType: widget.userType ?? UserType.user,
+          location: '',
         );
+        if (widget.userType == UserType.doctor) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => DoctorDetailsFormScreen(user: user),
+            ),
+          );
+        } else {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const HomeScreen(isLoginOrSignUp: true),
+            ),
+          );
+        }
       } else {
         toastMessage(
             context: context,
@@ -97,37 +115,86 @@ class SignupScreenState extends State<SignupScreen> {
   }
 
   Future<void> signUpWithGoogle() async {
+    if (!mounted) return;
     setState(() {
-      isgoogleLoading = true;
+      isGoogleLoading = true;
     });
-    try {
-      String res = await authService.handleSignUpWithGoogle();
 
-      if (res == "success") {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-        );
+    try {
+      final result = await authService.handleSignUpWithGoogle(
+          userType: widget.userType ?? UserType.user);
+      final String res = result['res'];
+      final UserModel? user = result['user'];
+
+      if (!mounted) return;
+
+      if (res == "success" && user != null) {
+        if (widget.userType == UserType.doctor && user.doctorDetails == null) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => DoctorDetailsFormScreen(user: user),
+            ),
+          );
+        } else {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const HomeScreen(isLoginOrSignUp: true),
+            ),
+          );
+        }
       } else {
         toastMessage(
-            context: context,
-            message: res,
-            leadingIcon: const Icon(Icons.error),
-            toastColor: Colors.red[200],
-            borderColor: Colors.red,
-            position: DelightSnackbarPosition.top);
-      }
-    } catch (e) {
-      toastMessage(
           context: context,
-          message: e.toString(),
+          message: res,
           leadingIcon: const Icon(Icons.error),
           toastColor: Colors.red[200],
           borderColor: Colors.red,
-          position: DelightSnackbarPosition.top);
+          position: DelightSnackbarPosition.top,
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      if (!mounted) return;
+      String errorMessage;
+      switch (e.code) {
+        case 'account-exists-with-different-credential':
+          errorMessage =
+              'An account already exists with a different sign-in method.';
+          break;
+        case 'invalid-credential':
+          errorMessage = 'Invalid Google credentials.';
+          break;
+        case 'operation-not-allowed':
+          errorMessage = 'Google sign-in is not enabled.';
+          break;
+        default:
+          errorMessage = 'Error signing in with Google: ${e.message}';
+      }
+      print('❌ Google Sign-In Error: $errorMessage');
+      toastMessage(
+        context: context,
+        message: errorMessage,
+        leadingIcon: const Icon(Icons.error),
+        toastColor: Colors.red[200],
+        borderColor: Colors.red,
+        position: DelightSnackbarPosition.top,
+      );
+    } catch (e) {
+      if (!mounted) return;
+      print('❌ Unexpected Error: $e');
+      toastMessage(
+        context: context,
+        message: 'An unexpected error occurred: $e',
+        leadingIcon: const Icon(Icons.error),
+        toastColor: Colors.red[200],
+        borderColor: Colors.red,
+        position: DelightSnackbarPosition.top,
+      );
     } finally {
-      setState(() {
-        isgoogleLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          isGoogleLoading = false;
+        });
+      }
     }
   }
 
@@ -281,12 +348,14 @@ class SignupScreenState extends State<SignupScreen> {
                     imagepath: "assets/auth/google.jpg",
                     label: AppLocalizations.of(context)!.signupGoogleButton,
                     onTap: signUpWithGoogle,
-                    isLoading: isgoogleLoading,
+                    isLoading: isGoogleLoading,
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const LoginScreen()));
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()),
+                      );
                     },
                     child: Text(
                       AppLocalizations.of(context)!.signupAlreadyHaveAccount,
